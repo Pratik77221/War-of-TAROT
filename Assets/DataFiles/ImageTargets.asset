@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ImageTargets
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5371547270795224597
+  m_GuidHigh: 138579944956140716
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5490326782367226889
+      m_GuidHigh: 5558460093926785179
+    m_SerializedTextureGuid:
+      m_GuidLow: 7130468518718097225
+      m_GuidHigh: 4605162716222381176
+    m_Size: {x: 0.1, y: 0.17275}
+    m_SpecifySize: 1
+    m_Name: RWS_Tarot_18_Moon
+    m_Texture: {fileID: 2800000, guid: c44c4749835662f478dc4e5917d3e83f, type: 3}
