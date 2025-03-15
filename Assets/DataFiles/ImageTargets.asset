@@ -18,12 +18,52 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5490326782367226889
-      m_GuidHigh: 5558460093926785179
+      m_GuidLow: 5243864192841096131
+      m_GuidHigh: 8633775713674060724
     m_SerializedTextureGuid:
-      m_GuidLow: 7130468518718097225
-      m_GuidHigh: 4605162716222381176
-    m_Size: {x: 0.1, y: 0.17275}
-    m_SpecifySize: 1
-    m_Name: RWS_Tarot_18_Moon
-    m_Texture: {fileID: 2800000, guid: c44c4749835662f478dc4e5917d3e83f, type: 3}
+      m_GuidLow: 4847001295660784157
+      m_GuidHigh: 6244287136515170219
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 1
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5718738014672992759
+      m_GuidHigh: 10941098713987381895
+    m_SerializedTextureGuid:
+      m_GuidLow: 11530385605688174125
+      m_GuidHigh: 468643619298016073
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 2
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4741896766401124514
+      m_GuidHigh: 3631060626319188355
+    m_SerializedTextureGuid:
+      m_GuidLow: 9765108447530085034
+      m_GuidHigh: 4155694640128967880
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 3
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4845568837391513481
+      m_GuidHigh: 11990338719836750524
+    m_SerializedTextureGuid:
+      m_GuidLow: 3302384090043478188
+      m_GuidHigh: 18185608604577967243
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 4
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5413135521777298521
+      m_GuidHigh: 16834379344259430536
+    m_SerializedTextureGuid:
+      m_GuidLow: 3347449338735456673
+      m_GuidHigh: 17913582883121590666
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 5
+    m_Texture: {fileID: 0}
