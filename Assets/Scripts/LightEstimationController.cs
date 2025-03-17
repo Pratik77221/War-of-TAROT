@@ -15,21 +15,11 @@ public class LightEstimationController : MonoBehaviour
         initialLightDirection = directionalLight.transform.forward;
     }
 
-    private void OnEnable()
-    {
-        // Subscribe to the frame received event
-        arCameraManager.frameReceived += OnFrameReceived;
-    }
-
-    private void OnDisable()
-    {
-        // Unsubscribe from the frame received event
-        arCameraManager.frameReceived -= OnFrameReceived;
-    }
-
     private void OnFrameReceived(ARCameraFrameEventArgs args)
     {
+        //Shader.SetGlobalFloat("_GlobalLightEstimation", Frame.LightEstimate.PixelIntensity);
         // Check if light estimation data is available
+        /*
         if (args.lightEstimation.averageBrightness.HasValue)
         {
             // Update the directional light's intensity
@@ -38,19 +28,19 @@ public class LightEstimationController : MonoBehaviour
             // Adjust shadow strength based on light intensity
             float shadowStrength = Mathf.Clamp(args.lightEstimation.averageBrightness.Value, 0.5f, 1f);
             directionalLight.shadowStrength = shadowStrength;
-        }
+        }*/
 
         if (args.lightEstimation.averageColorTemperature.HasValue)
         {
             // Update the directional light's color temperature
             directionalLight.colorTemperature = args.lightEstimation.averageColorTemperature.Value;
         }
-
+        /*
         if (args.lightEstimation.colorCorrection.HasValue)
         {
             // Update the directional light's color
             directionalLight.color = args.lightEstimation.colorCorrection.Value;
-        }
+        }*/
 
         if (args.lightEstimation.mainLightDirection.HasValue)
         {
@@ -62,7 +52,25 @@ public class LightEstimationController : MonoBehaviour
         else
         {
             // Fallback to the initial light direction if no estimation is available
-            directionalLight.transform.rotation = Quaternion.LookRotation(initialLightDirection, Vector3.up);
+            //directionalLight.transform.rotation = Quaternion.LookRotation(initialLightDirection, Vector3.up);
+            Quaternion targetRotation = Quaternion.LookRotation(initialLightDirection, Vector3.up);
+            directionalLight.transform.rotation = Quaternion.Slerp(directionalLight.transform.rotation, targetRotation, Time.deltaTime * 5f);
+        }
+
+         if (args.lightEstimation.mainLightIntensityLumens.HasValue)
+        {
+             // Update the directional light's intensity
+            directionalLight.intensity = args.lightEstimation.mainLightIntensityLumens.Value;
+
+            // Adjust shadow strength based on light intensity
+            //float shadowStrength = Mathf.Clamp(args.lightEstimation.mainLightIntensityLumens.Value, 0.5f, 1f);
+            //directionalLight.shadowStrength = shadowStrength;
+        }
+
+        if (args.lightEstimation.mainLightColor.HasValue)
+        {
+            // Update the directional light's color
+            directionalLight.color = args.lightEstimation.mainLightColor.Value;
         }
 
         // Update ambient lighting using Spherical Harmonics
@@ -81,5 +89,12 @@ public class LightEstimationController : MonoBehaviour
                 objectMaterial.SetVectorArray("_SHAb", new Vector4[] { args.lightEstimation.ambientSphericalHarmonics.Value[2] });
             }*/
         }
+
+    }
+
+    private void Update()
+    {
+        arCameraManager.frameReceived += OnFrameReceived;
+        //Shader.SetGlobalFloat("_GlobalLightEstimation", Frame.LightEstimate.PixelIntensity);
     }
 }
