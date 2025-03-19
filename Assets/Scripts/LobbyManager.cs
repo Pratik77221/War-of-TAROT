@@ -13,29 +13,29 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public GameObject roomPanel;
     public Text playerListText;
 
-    // Add a reference to the Start button (optional, only if you need to enable/disable it)
+
     public Button startGameButton;
 
-    // Maximum number of players per room (set to 2 for your requirement)
+
     private const byte maxPlayers = 2;
 
     void Start()
     {
-        // Enable Photon to sync scene loading
+
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        // Initially, show the login panel and hide the room panel
+
         loginPanel.SetActive(true);
         roomPanel.SetActive(false);
 
-        // Optionally, disable the start button until 2 players have joined
+
         if (startGameButton != null)
         {
             startGameButton.interactable = false;
         }
     }
 
-    // Called when the login button is clicked
+
     public void OnLoginButtonClicked()
     {
         string playerName = playerNameInputField.text;
@@ -45,22 +45,39 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        // Set the player's nickname and connect to Photon
+
         PhotonNetwork.NickName = playerName;
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Connecting to Photon...");
     }
 
-    // Called when successfully connected to the Photon Master Server
+
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master Server");
 
-        // Try to join any random room that is not full
+
         PhotonNetwork.JoinRandomRoom();
     }
 
-    // Called when joining a random room fails (e.g., no available room exists)
+    /*public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connected to Server");
+        PhotonNetwork.JoinLobby();
+    } */
+
+
+    /*
+   
+   private void InitializeLegacyPhoton()
+   {
+       Debug.Log("Initializing legacy Photon connection (this is outdated and no longer used).");
+       PhotonNetwork.Connect(); // Deprecated method call.
+   }
+   */
+
+
+
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("Join random room failed: " + message + ". Creating a new room.");
@@ -76,42 +93,52 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Joined room: " + PhotonNetwork.CurrentRoom.Name);
         Debug.Log("Player count (OnJoinedRoom): " + PhotonNetwork.PlayerList.Length);
 
-        // Hide the login panel and show the room panel
+
         loginPanel.SetActive(false);
         roomPanel.SetActive(true);
 
-        // Update the player list UI
+
         UpdatePlayerList();
 
-        // If the Start button is assigned, decide if it should be enabled
+
         if (startGameButton != null)
         {
-            // Enable it only if this client is the MasterClient (or if you want both players to be able to start)
+
             startGameButton.interactable = PhotonNetwork.IsMasterClient;
         }
     }
 
-    // Called when a new player enters the room
+    /* public override void OnJoinedLobby()
+    {
+
+        RoomOptions myRoomOptions = new RoomOptions();
+        myRoomOptions.MaxPlayers = 2;
+
+        PhotonNetwork.JoinOrCreateRoom("Room1", myRoomOptions, TypedLobby.Default);
+        Debug.Log("Connected to lobby");
+    } */
+
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("Player joined: " + newPlayer.NickName);
         UpdatePlayerList();
     }
 
-    // Called when a player leaves the room
+
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log("Player left: " + otherPlayer.NickName);
         UpdatePlayerList();
 
-        // If you only want the Start button for the MasterClient
+
         if (startGameButton != null)
         {
             startGameButton.interactable = PhotonNetwork.IsMasterClient;
         }
     }
 
-    // Updates the player list text UI to display all current players in the room
+
     private void UpdatePlayerList()
     {
         if (playerListText == null)
@@ -129,30 +156,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Player list updated: \n" + players);
     }
 
-    // Called when the "Leave Lobby" button is clicked
-    public void OnLeaveLobbyButtonClicked()
-    {
-        PhotonNetwork.LeaveRoom();
-    }
 
-    // Called when the local player has left the room
-    public override void OnLeftRoom()
-    {
-        Debug.Log("Left room, returning to login page");
 
-        // Show the login panel and hide the room panel
-        loginPanel.SetActive(true);
-        roomPanel.SetActive(false);
-    }
-
-    // Called when the "Start Game" button is clicked
     public void OnStartGameButtonClicked()
     {
-        // Only allow the MasterClient to load the AR scene (or remove this check if you want anyone to start)
+
         if (PhotonNetwork.IsMasterClient)
         {
-            // Make sure "ARScene" is in your Build Settings
-            PhotonNetwork.LoadLevel("Vuforia");
+
+            PhotonNetwork.LoadLevel("PlayerSelection");
         }
         else
         {

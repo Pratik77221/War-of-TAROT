@@ -5,24 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Test/SampleScene.unity
-    guid: 4755b35b590504809a7525fd2109c2e2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 2c91101ac9a699440a0e3b7fb5a27a92
   - enabled: 0
-    path: Assets/Scenes/Test/AR Foundation Sequencing.unity
-    guid: d32012f7c4dfddd4a866fd69cd5230b0
-  - enabled: 0
-    path: Assets/Scenes/Test/Vuforia.unity
-    guid: 46d0807b7e0217349a2c21f625414a1c
-  - enabled: 0
-    path: Assets/Scenes/Test/Vuforia Sequensing.unity
-    guid: e7bed848ffe8e414e8b356265bc44944
-  - enabled: 1
     path: Assets/Scenes/Ronit.unity
     guid: 1ee7c9a8682193e48acf3adbe1f6dcdb
+  - enabled: 1
+    path: Assets/Scenes/PlayerSelection.unity
+    guid: 110e053737a37dd4f90e4fe0e1abd267
+  - enabled: 1
+    path: Assets/Scenes/ARGame.unity
+    guid: 46402dd5927387b4e9b9f7815fc95331
+  - enabled: 0
+    path: Assets/Scenes/Test/AR Foundation Sequencing.unity
+    guid: d32012f7c4dfddd4a866fd69cd5230b0
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
