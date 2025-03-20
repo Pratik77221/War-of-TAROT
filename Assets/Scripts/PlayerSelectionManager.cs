@@ -237,7 +237,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
     // Only the master client (Player 1) can start the game.
     public void OnStartGameButtonClicked()
     {
-         if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
 
             PhotonNetwork.LoadLevel("ARGame");
@@ -248,3 +248,4 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         }
     }
 }
+

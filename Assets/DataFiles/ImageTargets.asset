@@ -18,102 +18,102 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5702919241926243699
-      m_GuidHigh: 4498930971958738090
-    m_SerializedTextureGuid:
-      m_GuidLow: 15277441145896147279
-      m_GuidHigh: 13282222943896520793
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Card1
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5015828002160649792
-      m_GuidHigh: 8419189435185277597
-    m_SerializedTextureGuid:
-      m_GuidLow: 2451305487232226933
-      m_GuidHigh: 2372242732908866681
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Card2
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5243098056964925786
-      m_GuidHigh: 7152046913636665228
-    m_SerializedTextureGuid:
-      m_GuidLow: 3356495853452235552
-      m_GuidHigh: 4994366925107751704
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Card3
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 4811300570086240800
-      m_GuidHigh: 10245305869045474487
-    m_SerializedTextureGuid:
-      m_GuidLow: 2825123631622564669
-      m_GuidHigh: 5464075635941068248
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Card4
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5346796802906559187
-      m_GuidHigh: 14828139010755589800
-    m_SerializedTextureGuid:
-      m_GuidLow: 8071688994218194231
-      m_GuidHigh: 10114060341270339450
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Card5
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 4910392422527621874
-      m_GuidHigh: 1997398405764632744
+      m_GuidLow: 4797391363444020771
+      m_GuidHigh: 16872641919193897869
     m_SerializedTextureGuid:
       m_GuidLow: 15507299865161888171
       m_GuidHigh: 15722744305373862362
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: Card6
+    m_Name: Death
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4881610829790305699
-      m_GuidHigh: 3440103984165794474
+      m_GuidLow: 4669920777350734370
+      m_GuidHigh: 4915119796185040034
+    m_SerializedTextureGuid:
+      m_GuidLow: 8071688994218194231
+      m_GuidHigh: 10114060341270339450
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Justice
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4975968251810796013
+      m_GuidHigh: 8229651278277996929
+    m_SerializedTextureGuid:
+      m_GuidLow: 3356495853452235552
+      m_GuidHigh: 4994366925107751704
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Strength
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5457755915137753847
+      m_GuidHigh: 73066823619786404
     m_SerializedTextureGuid:
       m_GuidLow: 8567097238895875464
       m_GuidHigh: 2327960485749548714
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: Card7
+    m_Name: TheDevil
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 5447272012335267746
-      m_GuidHigh: 16694614853756238481
+      m_GuidLow: 5240396200486332369
+      m_GuidHigh: 15974266216793495449
     m_SerializedTextureGuid:
-      m_GuidLow: 3473466493823507721
-      m_GuidHigh: 786023365223676072
+      m_GuidLow: 15277441145896147279
+      m_GuidHigh: 13282222943896520793
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: Card8
+    m_Name: TheFool
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4795711025580640863
-      m_GuidHigh: 10846809234363498399
+      m_GuidLow: 4630959877016575061
+      m_GuidHigh: 5879527188631800241
+    m_SerializedTextureGuid:
+      m_GuidLow: 2825123631622564669
+      m_GuidHigh: 5464075635941068248
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheHermit
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4886194444687763024
+      m_GuidHigh: 14049573801550529972
+    m_SerializedTextureGuid:
+      m_GuidLow: 2451305487232226933
+      m_GuidHigh: 2372242732908866681
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheMagician
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5423142836966051316
+      m_GuidHigh: 12219305899206914694
     m_SerializedTextureGuid:
       m_GuidLow: 3874235089146862618
       m_GuidHigh: 12276054933280563339
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: Card9
+    m_Name: TheStar
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4936550718860041994
-      m_GuidHigh: 13795812863361383097
+      m_GuidLow: 4782582167265451910
+      m_GuidHigh: 17380352265775741613
+    m_SerializedTextureGuid:
+      m_GuidLow: 3473466493823507721
+      m_GuidHigh: 786023365223676072
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheTower
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5351871765733839377
+      m_GuidHigh: 17516703143727341750
     m_SerializedTextureGuid:
       m_GuidLow: 15651346014371499080
       m_GuidHigh: 1402939512780557770
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: Card10
+    m_Name: TheWorld
     m_Texture: {fileID: 0}

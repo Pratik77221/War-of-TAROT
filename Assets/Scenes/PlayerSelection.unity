@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 1291551126}
   - component: {fileID: 1291551125}
   - component: {fileID: 1291551124}
+  - component: {fileID: 1291551130}
   m_Layer: 0
   m_Name: XR Origin (Mobile AR)
   m_TagString: Untagged
@@ -1138,6 +1139,29 @@ Transform:
   - {fileID: 1276204579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1291551130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291551122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258e9f2e2c68be7448d867984be349d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 4671278650649034569, guid: 218b67e571622b343b4d4342217cc2b5, type: 3}
+  - {fileID: 2739406379178292520, guid: f90eb100c608c2543bac4926a7f0df80, type: 3}
+  - {fileID: 3399504186574146016, guid: 2c83fd06750ca2e47ae245602ef579bf, type: 3}
+  - {fileID: 8809211797705819454, guid: 012b32cd402e23848a29078544539698, type: 3}
+  - {fileID: 224550381261325931, guid: fb31cc9ec0d84564e8eb9a690025dd74, type: 3}
+  - {fileID: 612253683056945337, guid: 8772b1a00cd807c499350208f3fe5bcc, type: 3}
+  - {fileID: 2127477002815400364, guid: eaf95953d0f0e6e468ec58a9ffec9ff7, type: 3}
+  - {fileID: 4436344272997105080, guid: d8a53f3557212334abd0379e2a9f6c4c, type: 3}
+  - {fileID: 5648959831484919709, guid: b091e18cc7b9e9d49a50f10480025d6a, type: 3}
+  - {fileID: 3217429723361730072, guid: a27ab2cd4f44f394b86af25b57335451, type: 3}
 --- !u!1 &1302418467
 GameObject:
   m_ObjectHideFlags: 0
