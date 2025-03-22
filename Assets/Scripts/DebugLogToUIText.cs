@@ -9,6 +9,31 @@ public class DebugLogToUIText : MonoBehaviour
 
     private StringBuilder logBuilder = new StringBuilder();
 
+
+    public GameObject debugPanel;
+
+    public void ShowPanel()
+    {
+        if (debugPanel != null)
+            debugPanel.SetActive(true);
+    }
+
+    
+    public void HidePanel()
+    {
+        if (debugPanel != null)
+            debugPanel.SetActive(false);
+    }
+
+    
+
+    void Start()
+    {
+        Debug.Log("DebugLogToUIText: Start() is running.");
+        debugPanel.SetActive(false );
+    }
+
+
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;

@@ -46,6 +46,9 @@ MonoBehaviour:
   - RPC_SetPlayer1Cards
   - RPC_SetPlayer2Cards
   - RPC_SyncPlayer2Cards
+  - RPC_ReceiveCloudAnchorID
+  - RPC_RequestAnchorID
+  - RPC_ConfirmEnvironmentPlacement
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

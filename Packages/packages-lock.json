@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "com.google.ar.core.arfoundation.extensions": {
+      "version": "https://github.com/google-ar/arcore-unity-extensions.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.xr.arfoundation": "4.1.5",
+        "com.unity.xr.arcore": "4.1.5",
+        "com.unity.xr.arkit": "4.1.5"
+      },
+      "hash": "b5a8a34bb0f5158389703854e908c33b544d8da5"
+    },
     "com.nianticlabs.lightship": {
       "version": "https://github.com/niantic-lightship/ardk-upm.git",
       "depth": 0,
@@ -58,6 +69,18 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
+    },
+    "com.unity.feature.ar": {
+      "version": "1.0.1",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.xr.arfoundation": "5.0.6",
+        "com.unity.xr.arkit": "5.0.6",
+        "com.unity.xr.arcore": "5.0.6",
+        "com.unity.xr.magicleap": "7.0.0",
+        "com.unity.xr.openxr": "1.8.1"
+      }
     },
     "com.unity.ide.visualstudio": {
       "version": "2.0.22",
@@ -296,6 +319,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.xr.interactionsubsystems": {
+      "version": "2.0.0",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.subsystems": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.xr.legacyinputhelpers": {
       "version": "2.1.10",
       "depth": 1,
@@ -303,6 +335,22 @@
       "dependencies": {
         "com.unity.modules.vr": "1.0.0",
         "com.unity.modules.xr": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.magicleap": {
+      "version": "7.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.vr": "1.0.0",
+        "com.unity.modules.xr": "1.0.0",
+        "com.unity.xr.management": "4.2.0",
+        "com.unity.xr.arfoundation": "5.0.0-pre.12",
+        "com.unity.modules.androidjni": "1.0.0",
+        "com.unity.modules.screencapture": "1.0.0",
+        "com.unity.xr.interactionsubsystems": "2.0.0"
       },
       "url": "https://packages.unity.com"
     },
