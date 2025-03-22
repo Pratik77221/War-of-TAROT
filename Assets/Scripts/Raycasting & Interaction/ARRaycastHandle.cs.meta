@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0c3edb7a7653240409436adc28309ade
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - arRaycastManager: {instanceID: 0}
+  - arPlaneManager: {instanceID: 0}
+  - placementIndicatorPrefab: {instanceID: 0}
+  - hitEffect: {instanceID: 0}
+  - successSound: {instanceID: 0}
+  - objectToPlace: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

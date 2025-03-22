@@ -4,7 +4,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using TMPro;
 
-public class CardSequenceARFoundation : MonoBehaviour
+public class CardSequenceAR : MonoBehaviour
 {
     public ARTrackedImageManager trackedImageManager; // Reference to ARTrackedImageManager
     public TextMeshProUGUI sequenceText; // Reference to TextMeshPro UI element for displaying sequence

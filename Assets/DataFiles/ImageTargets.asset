@@ -18,52 +18,102 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5243864192841096131
-      m_GuidHigh: 8633775713674060724
+      m_GuidLow: 4797391363444020771
+      m_GuidHigh: 16872641919193897869
     m_SerializedTextureGuid:
-      m_GuidLow: 4847001295660784157
-      m_GuidHigh: 6244287136515170219
+      m_GuidLow: 15507299865161888171
+      m_GuidHigh: 15722744305373862362
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 1
+    m_Name: Death
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 5718738014672992759
-      m_GuidHigh: 10941098713987381895
+      m_GuidLow: 4669920777350734370
+      m_GuidHigh: 4915119796185040034
     m_SerializedTextureGuid:
-      m_GuidLow: 11530385605688174125
-      m_GuidHigh: 468643619298016073
+      m_GuidLow: 8071688994218194231
+      m_GuidHigh: 10114060341270339450
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 2
+    m_Name: Justice
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4741896766401124514
-      m_GuidHigh: 3631060626319188355
+      m_GuidLow: 4975968251810796013
+      m_GuidHigh: 8229651278277996929
     m_SerializedTextureGuid:
-      m_GuidLow: 9765108447530085034
-      m_GuidHigh: 4155694640128967880
+      m_GuidLow: 3356495853452235552
+      m_GuidHigh: 4994366925107751704
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 3
+    m_Name: Strength
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4845568837391513481
-      m_GuidHigh: 11990338719836750524
+      m_GuidLow: 5457755915137753847
+      m_GuidHigh: 73066823619786404
     m_SerializedTextureGuid:
-      m_GuidLow: 3302384090043478188
-      m_GuidHigh: 18185608604577967243
+      m_GuidLow: 8567097238895875464
+      m_GuidHigh: 2327960485749548714
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 4
+    m_Name: TheDevil
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 5413135521777298521
-      m_GuidHigh: 16834379344259430536
+      m_GuidLow: 5240396200486332369
+      m_GuidHigh: 15974266216793495449
     m_SerializedTextureGuid:
-      m_GuidLow: 3347449338735456673
-      m_GuidHigh: 17913582883121590666
+      m_GuidLow: 15277441145896147279
+      m_GuidHigh: 13282222943896520793
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 5
+    m_Name: TheFool
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4630959877016575061
+      m_GuidHigh: 5879527188631800241
+    m_SerializedTextureGuid:
+      m_GuidLow: 2825123631622564669
+      m_GuidHigh: 5464075635941068248
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheHermit
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4886194444687763024
+      m_GuidHigh: 14049573801550529972
+    m_SerializedTextureGuid:
+      m_GuidLow: 2451305487232226933
+      m_GuidHigh: 2372242732908866681
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheMagician
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5423142836966051316
+      m_GuidHigh: 12219305899206914694
+    m_SerializedTextureGuid:
+      m_GuidLow: 3874235089146862618
+      m_GuidHigh: 12276054933280563339
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheStar
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4782582167265451910
+      m_GuidHigh: 17380352265775741613
+    m_SerializedTextureGuid:
+      m_GuidLow: 3473466493823507721
+      m_GuidHigh: 786023365223676072
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheTower
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5351871765733839377
+      m_GuidHigh: 17516703143727341750
+    m_SerializedTextureGuid:
+      m_GuidLow: 15651346014371499080
+      m_GuidHigh: 1402939512780557770
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TheWorld
     m_Texture: {fileID: 0}
