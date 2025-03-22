@@ -3,28 +3,26 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using TMPro;
-using Photon.Pun;  // Photon namespace for networking
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerSelectionManager : MonoBehaviourPunCallbacks
 {
-    public ARTrackedImageManager trackedImageManager; // AR tracked images
-    public TextMeshProUGUI sequenceText; // Single text box for both players
-    public Button startGameButton; // Start game button
+    public ARTrackedImageManager trackedImageManager;
+    public TextMeshProUGUI sequenceText;
+    public Button startGameButton;
 
-    // Define player identifiers
     private const string PLAYER1 = "Player1";
     private const string PLAYER2 = "Player2";
     private string currentPlayer;
 
-    // A simple class to store scanned card info (name and position for sorting)
     [System.Serializable]
     public class ScannedCard
     {
         public string cardName;
-        public Vector2 position; // We'll use x and z (stored as x,y)
+        public Vector2 position;
 
         public ScannedCard(string cardName, Vector2 pos)
         {
@@ -33,22 +31,17 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Lists that will be updated over the network via RPC
     private List<ScannedCard> scannedCardsPlayer1 = new List<ScannedCard>();
     private List<ScannedCard> scannedCardsPlayer2 = new List<ScannedCard>();
 
     void Start()
     {
-
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        // Determine player based on Photon master client status.
         currentPlayer = PhotonNetwork.IsMasterClient ? PLAYER1 : PLAYER2;
 
-        // Initially, disable the start button.
         startGameButton.gameObject.SetActive(false);
 
-        // Subscribe to tracked image events.
         trackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
     }
 
@@ -57,10 +50,9 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         trackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
-    // Handle AR tracked images changes.
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        // For added images, send an RPC to all clients.
+        // For added images
         foreach (var addedImage in eventArgs.added)
         {
             photonView.RPC("RPC_AddCard", RpcTarget.All,
@@ -70,7 +62,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
                 addedImage.transform.position.z);
         }
 
-        // For updated images, check if the card is not already registered and add if needed.
+        // For updated images
         foreach (var updatedImage in eventArgs.updated)
         {
             if (currentPlayer == PLAYER1)
@@ -93,7 +85,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
                         updatedImage.transform.position.z);
                 }
             }
-            else // For PLAYER2
+            else // PLAYER2
             {
                 bool exists = false;
                 foreach (var card in scannedCardsPlayer2)
@@ -115,7 +107,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
             }
         }
 
-        // For removed images, send an RPC to remove the card.
+        // For removed images
         foreach (var removedImage in eventArgs.removed)
         {
             photonView.RPC("RPC_RemoveCard", RpcTarget.All,
@@ -124,14 +116,12 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // RPC to add a scanned card into the correct player's list.
     [PunRPC]
     void RPC_AddCard(string cardName, string player, float posX, float posZ)
     {
         Vector2 pos = new Vector2(posX, posZ);
         if (player == PLAYER1)
         {
-            Debug.Log($"RPC_AddCard called for {cardName} from {player}");
             bool exists = false;
             foreach (var card in scannedCardsPlayer1)
             {
@@ -165,7 +155,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         UpdateSequenceText();
     }
 
-    // RPC to remove a card from a player's list.
+    // (Optional) If you still want to remove cards over the network
     [PunRPC]
     void RPC_RemoveCard(string cardName, string player)
     {
@@ -180,7 +170,6 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         UpdateSequenceText();
     }
 
-    // Sort cards based on world position (using x and z coordinates).
     void SortScannedCards(List<ScannedCard> cards)
     {
         cards.Sort((a, b) =>
@@ -191,7 +180,6 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         });
     }
 
-    // Combine both players' card lists into one string and update the shared text box.
     void UpdateSequenceText()
     {
         SortScannedCards(scannedCardsPlayer1);
@@ -213,6 +201,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         startGameButton.gameObject.SetActive(
             scannedCardsPlayer1.Count >= 5 && scannedCardsPlayer2.Count >= 5);
 
+        // Update local GameManager lists
         if (PhotonNetwork.IsMasterClient)
         {
             GameManager.Instance.player1Cards.Clear();
@@ -228,18 +217,33 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
             {
                 GameManager.Instance.player2Cards.Add(card.cardName);
             }
-        }
 
-        Debug.Log("Player 1 card count: " + scannedCardsPlayer1.Count);
-        Debug.Log("Player 2 card count: " + scannedCardsPlayer2.Count);
+            // *** NEW: Send Player2's card list to the Master Client via RPC. ***
+            photonView.RPC("RPC_SyncPlayer2Cards", RpcTarget.MasterClient,
+                GameManager.Instance.player2Cards.ToArray());
+        }
     }
 
-    // Only the master client (Player 1) can start the game.
+    // *** NEW RPC *** to sync Player2's cards with the Master Client.
+    [PunRPC]
+    void RPC_SyncPlayer2Cards(string[] cardsFromP2)
+    {
+        // Only the Master Client actually uses this data.
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager.Instance.player2Cards.Clear();
+            GameManager.Instance.player2Cards.AddRange(cardsFromP2);
+
+            Debug.Log("[MasterClient] Updated player2Cards from Player2: "
+                      + string.Join(", ", cardsFromP2));
+        }
+    }
+
+    // Only the master client (Player1) can start the game.
     public void OnStartGameButtonClicked()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-
             PhotonNetwork.LoadLevel("ARGame");
         }
         else
@@ -248,4 +252,3 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         }
     }
 }
-

@@ -42,6 +42,10 @@ MonoBehaviour:
   - UpdateCardsForPlayer
   - RPC_AddCard
   - RPC_RemoveCard
+  - RPC_PlaceEnvironment
+  - RPC_SetPlayer1Cards
+  - RPC_SetPlayer2Cards
+  - RPC_SyncPlayer2Cards
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
