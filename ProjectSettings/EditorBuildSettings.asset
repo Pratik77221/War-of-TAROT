@@ -8,15 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GuaHao1.unity
     guid: 47cf6851d3f494c469d52443f1d4f998
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lobby.unity
     guid: 2c91101ac9a699440a0e3b7fb5a27a92
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlayerSelection.unity
     guid: 110e053737a37dd4f90e4fe0e1abd267
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ARGame.unity
     guid: 46402dd5927387b4e9b9f7815fc95331
+  - enabled: 1
+    path: Assets/Scenes/Ronit.unity
+    guid: 1ee7c9a8682193e48acf3adbe1f6dcdb
   m_configObjects:
     Niantic.Lightship.AR.LightshipSettings: {fileID: 11400000, guid: 25bad10762ae2432db1b396598b3b2b9,
       type: 2}
