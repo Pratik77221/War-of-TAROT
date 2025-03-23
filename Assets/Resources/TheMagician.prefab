@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 4624543123074345324}
   - component: {fileID: -3725526349532706409}
   - component: {fileID: 6025711595225111580}
+  - component: {fileID: 4513346795356166385}
   m_Layer: 0
   m_Name: TheMagician
   m_TagString: Untagged
@@ -383,9 +384,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6025711595225111580}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -405,6 +407,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4513346795356166385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127477002815400364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2180367028689177335
 GameObject:
   m_ObjectHideFlags: 0

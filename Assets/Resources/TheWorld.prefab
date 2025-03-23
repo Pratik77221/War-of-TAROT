@@ -879,6 +879,7 @@ GameObject:
   - component: {fileID: 8146280763165236952}
   - component: {fileID: -1114782652077239266}
   - component: {fileID: 6543483517759103646}
+  - component: {fileID: 9124740980516892907}
   m_Layer: 0
   m_Name: TheWorld
   m_TagString: Untagged
@@ -940,9 +941,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6543483517759103646}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -962,6 +964,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &9124740980516892907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217429723361730072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3317354541643942460
 GameObject:
   m_ObjectHideFlags: 0

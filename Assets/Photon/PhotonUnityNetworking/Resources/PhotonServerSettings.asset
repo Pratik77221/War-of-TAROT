@@ -49,6 +49,10 @@ MonoBehaviour:
   - RPC_ReceiveCloudAnchorID
   - RPC_RequestAnchorID
   - RPC_ConfirmEnvironmentPlacement
+  - SpawnPrefab
+  - RPC_LogCharacterPosition
+  - RPC_SpawnAllCharacters
+  - RPC_EnvironmentReady
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

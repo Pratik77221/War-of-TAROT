@@ -2604,6 +2604,7 @@ GameObject:
   - component: {fileID: 6934122739327909240}
   - component: {fileID: 5335186336144595584}
   - component: {fileID: -3868873131652111811}
+  - component: {fileID: 8169536170207380697}
   m_Layer: 0
   m_Name: TheStar
   m_TagString: Untagged
@@ -2665,9 +2666,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -3868873131652111811}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2687,6 +2689,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &8169536170207380697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436344272997105080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4448412588914834876
 GameObject:
   m_ObjectHideFlags: 0

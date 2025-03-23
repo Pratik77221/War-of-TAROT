@@ -193,7 +193,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Spawn
+
+'
 --- !u!222 &38644465
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -522,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &532067036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,7 +568,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 532067037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498219198}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: OnSpawnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &532067037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,6 +1156,7 @@ GameObject:
   - component: {fileID: 1498219193}
   - component: {fileID: 1498219196}
   - component: {fileID: 1498219197}
+  - component: {fileID: 1498219198}
   m_Layer: 0
   m_Name: ARGameManager
   m_TagString: Untagged
@@ -1161,10 +1176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad9c025ef3851f449528dcac27a042d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arRaycastManager: {fileID: 331264298}
-  anchorManager: {fileID: 331264297}
-  environmentPrefab: {fileID: 8958181425781285612, guid: c28974d07fd8aa541914dfa991fbcf58,
+  objectToPlace: {fileID: 8958181425781285612, guid: c28974d07fd8aa541914dfa991fbcf58,
     type: 3}
+  raycastManager: {fileID: 331264298}
+  anchorManager: {fileID: 331264297}
 --- !u!4 &1498219194
 Transform:
   m_ObjectHideFlags: 0
@@ -1217,6 +1232,18 @@ MonoBehaviour:
   logText: {fileID: 1064473388}
   maxLines: 1000
   debugPanel: {fileID: 1514499979}
+--- !u!114 &1498219198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498219192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d52f4b05c328c349a57dbebf2073a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514499979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,7 +1261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1514499980
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7852776414141069110}
   - component: {fileID: -3049367641621988782}
   - component: {fileID: 4466006286649488009}
+  - component: {fileID: -3863037241434494138}
   m_Layer: 0
   m_Name: TheHermit
   m_TagString: Untagged
@@ -125,9 +126,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 4466006286649488009}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -147,3 +149,15 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-3863037241434494138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612253683056945337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

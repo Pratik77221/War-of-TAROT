@@ -5281,6 +5281,7 @@ GameObject:
   - component: {fileID: 2876506092247057918}
   - component: {fileID: 7088448661708572733}
   - component: {fileID: 6161621935067183769}
+  - component: {fileID: 7592148617152216711}
   m_Layer: 0
   m_Name: TheDevil
   m_TagString: Untagged
@@ -5342,9 +5343,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6161621935067183769}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -5364,6 +5366,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7592148617152216711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809211797705819454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8892022490483644265
 GameObject:
   m_ObjectHideFlags: 0
