@@ -24,18 +24,26 @@ public class ARMultiplayerGame : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (environmentPlaced || charactersSpawned || !photonView.IsMine) return;
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        // Handle environment placement
+        if (!environmentPlaced && !charactersSpawned && photonView.IsMine)
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                TryHostAnchor(Input.GetTouch(0).position);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    TryHostAnchor(Input.GetTouch(0).position);
+                }
+                else
+                {
+                    photonView.RPC("RPC_RequestAnchorID", RpcTarget.MasterClient);
+                }
             }
-            else
-            {
-                photonView.RPC("RPC_RequestAnchorID", RpcTarget.MasterClient);
-            }
+        }
+
+        // Handle character taps AFTER placement
+        if (environmentPlaced && charactersSpawned && photonView.IsMine)
+        {
+            HandleCharacterTap();
         }
     }
 
@@ -183,6 +191,27 @@ public class ARMultiplayerGame : MonoBehaviourPunCallbacks
             if (pv != null)
             {
                 pv.TransferOwnership(targetPlayer.ActorNumber);
+            }
+        }
+    }
+
+    private void HandleCharacterTap()
+    {
+        if (!photonView.IsMine || !charactersSpawned) return;
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                PhotonView pv = hit.collider.GetComponent<PhotonView>();
+                if (pv != null && pv.IsMine)
+                {
+                    Debug.Log($"Character tapped: {hit.collider.gameObject.name}");
+                    // Add your custom tap handling logic here
+                }
             }
         }
     }

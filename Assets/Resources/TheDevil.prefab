@@ -5282,6 +5282,7 @@ GameObject:
   - component: {fileID: 7088448661708572733}
   - component: {fileID: 6161621935067183769}
   - component: {fileID: 7592148617152216711}
+  - component: {fileID: 7751467414074317984}
   m_Layer: 0
   m_Name: TheDevil
   m_TagString: Untagged
@@ -5378,6 +5379,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7751467414074317984
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809211797705819454}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9270871, y: 2.147537, z: 1}
+  m_Center: {x: -0.0013596192, y: 0.9902131, z: 0}
 --- !u!1 &8892022490483644265
 GameObject:
   m_ObjectHideFlags: 0

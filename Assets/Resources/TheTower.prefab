@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 4358587418677055581}
   - component: {fileID: -6725113878467419730}
   - component: {fileID: -5663316780516650610}
+  - component: {fileID: 15601975240533052}
   m_Layer: 0
   m_Name: TheTower
   m_TagString: Untagged
@@ -591,6 +592,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &15601975240533052
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648959831484919709}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.9362903, y: 6.8927245, z: 2.9335823}
+  m_Center: {x: 0.10283982, y: 2.9463623, z: 0.96679175}
 --- !u!1 &5778465353430836513
 GameObject:
   m_ObjectHideFlags: 0
