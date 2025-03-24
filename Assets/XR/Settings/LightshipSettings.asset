@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _apiKey: 
   _useLightshipDepth: 1
-  _preferLidarIfAvailable: 0
+  _preferLidarIfAvailable: 1
   _useLightshipMeshing: 1
   _useLightshipSemanticSegmentation: 1
-  _useLightshipScanning: 0
+  _useLightshipScanning: 1
   _useLightshipPersistentAnchor: 1
-  _useLightshipObjectDetection: 0
+  _useLightshipObjectDetection: 1
   _useLightshipWorldPositioning: 1
   _locationAndCompassDataSource: 0
   _spoofLocationInfo:
