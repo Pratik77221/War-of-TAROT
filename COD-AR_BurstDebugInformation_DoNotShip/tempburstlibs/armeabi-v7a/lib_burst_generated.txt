@@ -1,4 +1,4 @@
-Library: /Users/ronitsaha/Documents/GitHub/COD-AR/Temp/BurstOutput/tempburstlibs/armeabi-v7a/lib_burst_generated
+Library: D:\Unity Projects\COD AR\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
 --platform=Android
 --backend=burst-llvm-16
 --target=ARMV7A_NEON32
@@ -7,12 +7,11 @@ Library: /Users/ronitsaha/Documents/GitHub/COD-AR/Temp/BurstOutput/tempburstlibs
 --dump=Function
 --float-precision=Standard
 --target-framework=NetFramework
---generate-link-xml=Temp/burst.link.xml
---temp-folder=/Users/ronitsaha/Documents/GitHub/COD-AR/Temp/Burst
---debug=LineOnly
---key-folder=/Applications/Unity/Hub/Editor/2022.3.6f1/PlaybackEngines/AndroidPlayer
---decode-folder=/Users/ronitsaha/Documents/GitHub/COD-AR/Library/Burst
---output=/Users/ronitsaha/Documents/GitHub/COD-AR/Temp/BurstOutput/tempburstlibs/armeabi-v7a/lib_burst_generated
+--generate-link-xml=Temp\burst.link.xml
+--temp-folder=D:\Unity Projects\COD AR\Temp\Burst
+--key-folder=D:/Unity/Hub/Editor/2022.3.6f1/Editor/Data/PlaybackEngines/AndroidPlayer
+--decode-folder=D:\Unity Projects\COD AR\Library\Burst
+--output=D:\Unity Projects\COD AR\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=UnityEngine.XR.Interaction.Toolkit.Utilities.BurstMathUtility, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::ProjectOnPlane(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)--1819bc9925667b008fd6c3e6019ccf71

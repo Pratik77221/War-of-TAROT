@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: -3725526349532706409}
   - component: {fileID: 6025711595225111580}
   - component: {fileID: 4513346795356166385}
+  - component: {fileID: 7545032301385290893}
   m_Layer: 0
   m_Name: TheMagician
   m_TagString: Untagged
@@ -419,6 +420,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df2ec12509556649a25819fe674d27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7545032301385290893
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127477002815400364}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.7122264, y: 9.618043, z: 5.358889}
+  m_Center: {x: -0.08195127, y: 4.309021, z: -0.5496158}
 --- !u!1 &2180367028689177335
 GameObject:
   m_ObjectHideFlags: 0
