@@ -500,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logText: {fileID: 1023672862}
   maxLines: 100
+  debugPanel: {fileID: 0}
 --- !u!1 &603695251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,16 +1176,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsToSpawn:
-  - {fileID: 4671278650649034569, guid: 218b67e571622b343b4d4342217cc2b5, type: 3}
-  - {fileID: 2739406379178292520, guid: f90eb100c608c2543bac4926a7f0df80, type: 3}
-  - {fileID: 3399504186574146016, guid: 2c83fd06750ca2e47ae245602ef579bf, type: 3}
-  - {fileID: 8809211797705819454, guid: 012b32cd402e23848a29078544539698, type: 3}
-  - {fileID: 224550381261325931, guid: fb31cc9ec0d84564e8eb9a690025dd74, type: 3}
-  - {fileID: 612253683056945337, guid: 8772b1a00cd807c499350208f3fe5bcc, type: 3}
-  - {fileID: 2127477002815400364, guid: eaf95953d0f0e6e468ec58a9ffec9ff7, type: 3}
-  - {fileID: 4436344272997105080, guid: d8a53f3557212334abd0379e2a9f6c4c, type: 3}
-  - {fileID: 5648959831484919709, guid: b091e18cc7b9e9d49a50f10480025d6a, type: 3}
-  - {fileID: 3217429723361730072, guid: a27ab2cd4f44f394b86af25b57335451, type: 3}
+  - {fileID: 4671278650649034569, guid: 310675e3faa053e4490851e04732c402, type: 3}
+  - {fileID: 6751196601702599108, guid: f0fceac0e2e2f6840b733bc35c213859, type: 3}
+  - {fileID: 3399504186574146016, guid: c079f4285f4af48499bf61a94650dfde, type: 3}
+  - {fileID: 8809211797705819454, guid: f78c97b2acb55d04ba40fd09057c7734, type: 3}
+  - {fileID: 7633755839590516741, guid: 852ab7bf50ce9824ea27035fa7d83822, type: 3}
+  - {fileID: 5904327742289724661, guid: 683878b288334c74eaca06f947d7571a, type: 3}
+  - {fileID: 2127477002815400364, guid: 60481e6fd6d0c264ab62091405810b0f, type: 3}
+  - {fileID: 4436344272997105080, guid: 8e6045f6ffc5e1f4ebf0b4d03d5e2669, type: 3}
+  - {fileID: 5648959831484919709, guid: baa2cf54d7c88d94996ced69672576d8, type: 3}
+  - {fileID: 3217429723361730072, guid: dd4c981feee7ec44c930965d27623a24, type: 3}
 --- !u!1 &1302418467
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using System.Collections;
 public class NetworkedCharacterParenting : MonoBehaviourPun
 {
     private int spawnIndex = -1;
-    private ARMultiplayerGame gameManager;
+    private ARGameManager gameManager;
     private float timeout = 10f;
 
     void Start()
@@ -21,7 +21,7 @@ public class NetworkedCharacterParenting : MonoBehaviourPun
     {
         while (timeout > 0)
         {
-            gameManager = FindObjectOfType<ARMultiplayerGame>();
+            gameManager = FindObjectOfType<ARGameManager>();
             if (gameManager != null && gameManager.spawnPoints != null) // Now accessible
             {
                 if (spawnIndex < gameManager.spawnPoints.spawnPoints.Length)

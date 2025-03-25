@@ -7,8 +7,9 @@ using Google.XR.ARCoreExtensions;
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
+using System;
 
-public class ARMultiplayerGame : MonoBehaviourPunCallbacks
+public class ARGameManager : MonoBehaviourPunCallbacks
 {
     public GameObject objectToPlace;
     public ARRaycastManager raycastManager;
@@ -21,6 +22,9 @@ public class ARMultiplayerGame : MonoBehaviourPunCallbacks
     private bool charactersSpawned = false;
     private bool masterReady = false;
     private bool clientReady = false;
+
+
+    public static event Action<GameObject> OnCharacterTapped;
 
     void Update()
     {
@@ -40,8 +44,7 @@ public class ARMultiplayerGame : MonoBehaviourPunCallbacks
             }
         }
 
-        // Handle character taps AFTER placement
-        if (environmentPlaced && charactersSpawned && photonView.IsMine)
+        if (environmentPlaced && charactersSpawned)
         {
             HandleCharacterTap();
         }
@@ -195,9 +198,9 @@ public class ARMultiplayerGame : MonoBehaviourPunCallbacks
         }
     }
 
-    private void HandleCharacterTap()
+    /*private void HandleCharacterTap()
     {
-        if (!photonView.IsMine || !charactersSpawned) return;
+        if (!charactersSpawned) return;
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -209,10 +212,41 @@ public class ARMultiplayerGame : MonoBehaviourPunCallbacks
                 PhotonView pv = hit.collider.GetComponent<PhotonView>();
                 if (pv != null && pv.IsMine)
                 {
-                    Debug.Log($"Character tapped: {hit.collider.gameObject.name}");
-                    // Add your custom tap handling logic here
+                    Debug.Log($"{PhotonNetwork.NickName} tapped: {hit.collider.gameObject.name}");
+                    OnCharacterTapped?.Invoke(hit.collider.gameObject);
                 }
             }
         }
+    }*/
+
+    private void HandleCharacterTap()
+{
+    if (!charactersSpawned) return;
+
+    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        RaycastHit hit;
+        int characterLayer = LayerMask.GetMask("Characters");
+        float maxDistance = 100f;
+
+        if (Physics.Raycast(ray, out hit, maxDistance, characterLayer))
+        {
+            PhotonView pv = hit.collider.GetComponentInParent<PhotonView>();
+            
+            if (pv != null)
+            {
+                if (pv.IsMine)
+                {
+                    Debug.Log($"{PhotonNetwork.NickName} tapped: {hit.collider.gameObject.name}");
+                    OnCharacterTapped?.Invoke(hit.collider.gameObject);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Tapped object has no PhotonView component");
+            }
+        }
     }
+}
 }

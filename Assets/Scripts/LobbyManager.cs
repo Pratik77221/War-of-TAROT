@@ -126,7 +126,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
 
-    public override void OnPlayerLeftRoom(Player otherPlayer)
+    /*public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log("Player left: " + otherPlayer.NickName);
         UpdatePlayerList();
@@ -136,7 +136,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             startGameButton.interactable = PhotonNetwork.IsMasterClient;
         }
-    }
+    }*/
 
 
     private void UpdatePlayerList()
