@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -220,33 +221,33 @@ public class ARGameManager : MonoBehaviourPunCallbacks
     }*/
 
     private void HandleCharacterTap()
-{
-    if (!charactersSpawned) return;
-
-    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-        RaycastHit hit;
-        int characterLayer = LayerMask.GetMask("Characters");
-        float maxDistance = 100f;
+        if (!charactersSpawned) return;
 
-        if (Physics.Raycast(ray, out hit, maxDistance, characterLayer))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            PhotonView pv = hit.collider.GetComponentInParent<PhotonView>();
-            
-            if (pv != null)
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+            int characterLayer = LayerMask.GetMask("Characters");
+            float maxDistance = 100f;
+
+            if (Physics.Raycast(ray, out hit, maxDistance, characterLayer))
             {
-                if (pv.IsMine)
+                PhotonView pv = hit.collider.GetComponentInParent<PhotonView>();
+
+                if (pv != null)
                 {
-                    Debug.Log($"{PhotonNetwork.NickName} tapped: {hit.collider.gameObject.name}");
-                    OnCharacterTapped?.Invoke(hit.collider.gameObject);
+                    if (pv.IsMine)
+                    {
+                        Debug.Log($"{PhotonNetwork.NickName} tapped: {hit.collider.gameObject.name}");
+                        OnCharacterTapped?.Invoke(hit.collider.gameObject);
+                    }
                 }
-            }
-            else
-            {
-                Debug.LogWarning("Tapped object has no PhotonView component");
+                else
+                {
+                    Debug.LogWarning("Tapped object has no PhotonView component");
+                }
             }
         }
     }
-}
 }

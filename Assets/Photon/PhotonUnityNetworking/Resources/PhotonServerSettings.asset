@@ -54,6 +54,12 @@ MonoBehaviour:
   - RPC_SpawnAllCharacters
   - RPC_EnvironmentReady
   - RPC_SyncPosition
+  - RPC_Die
+  - TakeDamage
+  - RPC_PlayAttackAnimation
+  - RPC_PlayAnimation
+  - RPC_SyncAnimation
+  - SyncMovementAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
