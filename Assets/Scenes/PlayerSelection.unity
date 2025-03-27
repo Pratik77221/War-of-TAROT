@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657886, g: 0.49641275, b: 0.5748176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_FocusMode: -1
   m_LightEstimationMode: -1
   m_AutoFocus: 1
-  m_LightEstimation: 0
+  m_LightEstimation: -1
   m_FacingDirection: 1
   m_RenderMode: 0
 --- !u!81 &1119137238
@@ -1368,6 +1368,7 @@ GameObject:
   - component: {fileID: 1291551125}
   - component: {fileID: 1291551124}
   - component: {fileID: 1291551130}
+  - component: {fileID: 1291551131}
   m_Layer: 0
   m_Name: XR Origin (Mobile AR)
   m_TagString: Untagged
@@ -1488,6 +1489,20 @@ MonoBehaviour:
   - {fileID: 4436344272997105080, guid: 8e6045f6ffc5e1f4ebf0b4d03d5e2669, type: 3}
   - {fileID: 5648959831484919709, guid: baa2cf54d7c88d94996ced69672576d8, type: 3}
   - {fileID: 3217429723361730072, guid: dd4c981feee7ec44c930965d27623a24, type: 3}
+--- !u!114 &1291551131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291551122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498915f79cabb4b4a86dac8b6a2927bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCameraManager: {fileID: 1119137237}
+  directionalLight: {fileID: 1855445266}
 --- !u!1 &1302418467
 GameObject:
   m_ObjectHideFlags: 0
