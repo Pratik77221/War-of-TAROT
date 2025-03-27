@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 0.07
 --- !u!1 &613441212377722148
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 0.06
 --- !u!1 &3691971595250658129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,11 +1099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6ee78364336564eaa446d520ba5504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthSlider: {fileID: 1533635121052572466}
-  healthBarOffset: {x: 0, y: 2, z: 0}
-  hookPunchDamage: 15
-  heavyPunchDamage: 25
+  currentHealth: 1
+  healthBar: {fileID: 1533635121052572466}
 --- !u!1 &5999479503677080181
 GameObject:
   m_ObjectHideFlags: 0

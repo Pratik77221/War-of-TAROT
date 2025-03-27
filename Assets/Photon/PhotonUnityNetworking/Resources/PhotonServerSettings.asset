@@ -60,6 +60,8 @@ MonoBehaviour:
   - RPC_PlayAnimation
   - RPC_SyncAnimation
   - SyncMovementAnimation
+  - RPC_ApplyDamage
+  - SortScannedCards
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

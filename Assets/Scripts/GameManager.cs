@@ -2,6 +2,11 @@ using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Store the selected charaacters in runtime and across scene
+/// </summary>
+/// 
 public class GameManager : MonoBehaviourPun
 {
     public static GameManager Instance;

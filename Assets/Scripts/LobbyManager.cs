@@ -11,30 +11,28 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     [Header("Room UI")]
     public GameObject roomPanel;
-    public Text playerListText;
-
+    public Text player1Text;
+    public Text player2Text;
 
     public Button startGameButton;
 
+    
+    public GameObject waitingImage;
 
     private const byte maxPlayers = 2;
 
     void Start()
     {
-
         PhotonNetwork.AutomaticallySyncScene = true;
-
 
         loginPanel.SetActive(true);
         roomPanel.SetActive(false);
-
 
         if (startGameButton != null)
         {
             startGameButton.interactable = false;
         }
     }
-
 
     public void OnLoginButtonClicked()
     {
@@ -45,17 +43,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
         }
 
-
         PhotonNetwork.NickName = playerName;
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Connecting to Photon...");
     }
 
-
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master Server");
-
 
         PhotonNetwork.JoinRandomRoom();
     }
@@ -66,7 +61,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();
     } */
 
-
     /*
    
    private void InitializeLegacyPhoton()
@@ -75,8 +69,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
        PhotonNetwork.Connect(); // Deprecated method call.
    }
    */
-
-
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -93,44 +85,49 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Joined room: " + PhotonNetwork.CurrentRoom.Name);
         Debug.Log("Player count (OnJoinedRoom): " + PhotonNetwork.PlayerList.Length);
 
-
         loginPanel.SetActive(false);
         roomPanel.SetActive(true);
 
-
         UpdatePlayerList();
-
 
         if (startGameButton != null)
         {
-
             startGameButton.interactable = PhotonNetwork.IsMasterClient;
         }
+
+        // Show waiting image if Master Client is waiting for another player.
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.PlayerList.Length < maxPlayers)
+        {
+            if (waitingImage != null)
+                waitingImage.SetActive(true);
+        }
+        else
+        {
+            if (waitingImage != null)
+                waitingImage.SetActive(false);
+        }
     }
-
-    /* public override void OnJoinedLobby()
-    {
-
-        RoomOptions myRoomOptions = new RoomOptions();
-        myRoomOptions.MaxPlayers = 2;
-
-        PhotonNetwork.JoinOrCreateRoom("Room1", myRoomOptions, TypedLobby.Default);
-        Debug.Log("Connected to lobby");
-    } */
-
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("Player joined: " + newPlayer.NickName);
         UpdatePlayerList();
-    }
 
+        // Hide waiting image once the room has the maximum players.
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.PlayerList.Length >= maxPlayers)
+            {
+                if (waitingImage != null)
+                    waitingImage.SetActive(false);
+            }
+        }
+    }
 
     /*public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log("Player left: " + otherPlayer.NickName);
         UpdatePlayerList();
-
 
         if (startGameButton != null)
         {
@@ -138,32 +135,36 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
     }*/
 
-
     private void UpdatePlayerList()
     {
-        if (playerListText == null)
-        {
-            Debug.LogError("playerListText is not assigned in the Inspector!");
-            return;
-        }
+        // Reset texts
+        if (player1Text != null)
+            player1Text.text = "";
+        if (player2Text != null)
+            player2Text.text = "";
 
-        string players = "";
+        // Assign names based on ownership:
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            players += player.NickName + "\n";
+            if (player.IsMasterClient)
+            {
+                if (player1Text != null)
+                    player1Text.text = player.NickName;
+            }
+            else
+            {
+                if (player2Text != null)
+                    player2Text.text = player.NickName;
+            }
         }
-        playerListText.text = players;
-        Debug.Log("Player list updated: \n" + players);
+
+        Debug.Log("Player list updated: Player1 = " + player1Text.text + " | Player2 = " + player2Text.text);
     }
-
-
 
     public void OnStartGameButtonClicked()
     {
-
         if (PhotonNetwork.IsMasterClient)
         {
-
             PhotonNetwork.LoadLevel("PlayerSelection");
         }
         else

@@ -1,37 +1,33 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class AttackHitDetector : MonoBehaviourPun
+public class AttackHitDetector : MonoBehaviour
 {
-    private float currentDamage;
-    private bool detectionActive;
-
-    public void SetCurrentDamage(float damage)
-    {
-        currentDamage = damage;
-    }
-
-    // Call this from animation events
-    public void ActivateHitDetection()
-    {
-        if (!photonView.IsMine) return;
-        detectionActive = true;
-        Invoke(nameof(DeactivateHitDetection), 0.5f); // Adjust based on attack animation length
-    }
-
-    void DeactivateHitDetection()
-    {
-        detectionActive = false;
-    }
+    [Header("Damage Settings")]
+   
+    public float damageAmount = 0.1f;
 
     void OnTriggerEnter(Collider other)
     {
-        if (!detectionActive || !photonView.IsMine) return;
-
-        CharacterHealth targetHealth = other.GetComponent<CharacterHealth>();
-        if (targetHealth != null && targetHealth.photonView != photonView)
+        
+        CharacterHealth healthManager = other.GetComponent<CharacterHealth>();
+        if (healthManager != null)
         {
-            targetHealth.photonView.RPC("TakeDamage", RpcTarget.All, currentDamage);
+            
+            PhotonView targetPhotonView = other.GetComponent<PhotonView>();
+            
+            PhotonView attackerPhotonView = GetComponentInParent<PhotonView>();
+
+            
+            if (targetPhotonView != null && attackerPhotonView != null)
+            {
+                if (targetPhotonView.Owner == attackerPhotonView.Owner)
+                {
+                    return;
+                }
+            }
+
+            healthManager.ApplyDamage(damageAmount);
         }
     }
 }

@@ -11,7 +11,8 @@ using UnityEngine.UI;
 public class PlayerSelectionManager : MonoBehaviourPunCallbacks
 {
     public ARTrackedImageManager trackedImageManager;
-    public TextMeshProUGUI sequenceText;
+    public TextMeshProUGUI player1SequenceText;
+    public TextMeshProUGUI player2SequenceText;
     public Button startGameButton;
 
     private const string PLAYER1 = "Player1";
@@ -37,11 +38,8 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-
         currentPlayer = PhotonNetwork.IsMasterClient ? PLAYER1 : PLAYER2;
-
         startGameButton.gameObject.SetActive(false);
-
         trackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
     }
 
@@ -107,13 +105,13 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
             }
         }
 
-        // For removed images
+       /* // For removed images
         foreach (var removedImage in eventArgs.removed)
         {
             photonView.RPC("RPC_RemoveCard", RpcTarget.All,
                 removedImage.referenceImage.name,
                 currentPlayer);
-        }
+        }*/
     }
 
     [PunRPC]
@@ -155,9 +153,8 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         UpdateSequenceText();
     }
 
-    // (Optional) If you still want to remove cards over the network
     [PunRPC]
-    void RPC_RemoveCard(string cardName, string player)
+   /* void RPC_RemoveCard(string cardName, string player)
     {
         if (player == PLAYER1)
         {
@@ -168,7 +165,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
             scannedCardsPlayer2.RemoveAll(card => card.cardName == cardName);
         }
         UpdateSequenceText();
-    }
+    }*/
 
     void SortScannedCards(List<ScannedCard> cards)
     {
@@ -182,20 +179,23 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
 
     void UpdateSequenceText()
     {
+        // Sort cards before updating text
         SortScannedCards(scannedCardsPlayer1);
         SortScannedCards(scannedCardsPlayer2);
 
-        string text = "Player 1 Cards:\n";
+        string textPlayer1 = "Player 1 Cards:\n";
         foreach (var card in scannedCardsPlayer1)
         {
-            text += card.cardName + "\n";
+            textPlayer1 += card.cardName + "\n";
         }
-        text += "\nPlayer 2 Cards:\n";
+        player1SequenceText.text = textPlayer1;
+
+        string textPlayer2 = "Player 2 Cards:\n";
         foreach (var card in scannedCardsPlayer2)
         {
-            text += card.cardName + "\n";
+            textPlayer2 += card.cardName + "\n";
         }
-        sequenceText.text = text;
+        player2SequenceText.text = textPlayer2;
 
         // Enable the start button only if both players have scanned at least 5 cards.
         startGameButton.gameObject.SetActive(
@@ -217,38 +217,28 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
             {
                 GameManager.Instance.player2Cards.Add(card.cardName);
             }
-
-            // *** NEW: Send Player2's card list to the Master Client via RPC. ***
+            // Send Player2's card list to the Master Client via RPC.
             photonView.RPC("RPC_SyncPlayer2Cards", RpcTarget.MasterClient,
                 GameManager.Instance.player2Cards.ToArray());
         }
     }
 
-    // *** NEW RPC *** to sync Player2's cards with the Master Client.
     [PunRPC]
     void RPC_SyncPlayer2Cards(string[] cardsFromP2)
     {
-        // Only the Master Client actually uses this data.
         if (PhotonNetwork.IsMasterClient)
         {
             GameManager.Instance.player2Cards.Clear();
             GameManager.Instance.player2Cards.AddRange(cardsFromP2);
-
-            Debug.Log("[MasterClient] Updated player2Cards from Player2: "
-                      + string.Join(", ", cardsFromP2));
         }
     }
 
-    // Only the master client (Player1) can start the game.
+    // Only the Master Client (Player1) can start the game.
     public void OnStartGameButtonClicked()
     {
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("ARGame");
-        }
-        else
-        {
-            Debug.Log("Only the Master Client can start the game!");
         }
     }
 }

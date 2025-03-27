@@ -1008,6 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 0.05
 --- !u!4 &6267534203345081214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e835eae5e9574c345a3f69c640ed9565,
@@ -1198,11 +1199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6ee78364336564eaa446d520ba5504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthSlider: {fileID: 1501861775595533315}
-  healthBarOffset: {x: 0, y: 2, z: 0}
-  hookPunchDamage: 15
-  heavyPunchDamage: 25
+  currentHealth: 1
+  healthBar: {fileID: 1501861775595533315}
 --- !u!1 &6766000310002097574 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 906860925323602227, guid: e835eae5e9574c345a3f69c640ed9565,
@@ -1242,6 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 0.07
 --- !u!1001 &7447286343256415922
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,10 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+/// <summary>
+/// For spawning characters on the cards
+/// </summary>
+
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ObjectSpawner : MonoBehaviour
 {
