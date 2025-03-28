@@ -26,15 +26,32 @@ public class CharacterMovementController : MonoBehaviour
     public Button hookPunchButton;
     public Button heavyPunchButton;
 
+    public Button specialAttackButton;
+
+    public Transform specialAttackSpawnPoint;
+
+    public GameObject Fireball;
+
     // Cooldown timers (in seconds)
     private float hookPunchCooldownTimer = 0f;
     private float heavyPunchCooldownTimer = 0f;
+
+    private float specialAttackCooldownTimer = 0f;
 
     // Cooldown durations
     [Tooltip("Minimal cooldown for hook punch. Set to 0 for immediate re-trigger.")]
     public float hookPunchCooldownDuration = 0f;
     [Tooltip("Cooldown for heavy punch.")]
     public float heavyPunchCooldownDuration = 5f;
+
+    [Tooltip("Cooldown for Special Attack.")]
+    public float specialAttackCooldownDuration = 15f;
+
+    [Header("Damage Settings")]
+    public float hookPunchDamage = 0.1f;
+    public float heavyPunchDamage = 0.3f;
+
+    public float specialAttackDamage = 1.0f;
 
     private PhotonView photonView;
 
@@ -150,7 +167,7 @@ public class CharacterMovementController : MonoBehaviour
 
     public void PerformHookPunch()
     {
-        if (currentSelectedCharacter != null && hookPunchCooldownTimer <= 0f)
+      if (currentSelectedCharacter != null && hookPunchCooldownTimer <= 0f)
         {
             PhotonView pv = currentSelectedCharacter.GetComponent<PhotonView>();
             if (pv != null && pv.IsMine)
@@ -172,6 +189,21 @@ public class CharacterMovementController : MonoBehaviour
                 // Restart the "HeavyPunch" animation from the beginning regardless of the current state
                 characterAnimator.Play("HeavyPunch", 0, 0f);
                 heavyPunchCooldownTimer = heavyPunchCooldownDuration;
+            }
+        }
+    }
+
+    public void PerformSpecialAttack()
+    {
+        if (currentSelectedCharacter != null && specialAttackCooldownTimer <= 0f)
+        {
+            PhotonView pv = currentSelectedCharacter.GetComponent<PhotonView>();
+            if (pv != null && pv.IsMine)
+            {
+                // Restart the "HeavyPunch" animation from the beginning regardless of the current state
+                characterAnimator.Play("MagicAttack", 0, 0f);
+
+                specialAttackCooldownTimer= specialAttackCooldownDuration;
             }
         }
     }

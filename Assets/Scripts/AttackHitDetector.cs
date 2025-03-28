@@ -5,7 +5,8 @@ public class AttackHitDetector : MonoBehaviour
 {
     [Header("Damage Settings")]
    
-    public float damageAmount = 0.1f;
+    public float hookdamageAmount;
+    public float heavydamageAmount;
 
     void OnTriggerEnter(Collider other)
     {
@@ -27,7 +28,17 @@ public class AttackHitDetector : MonoBehaviour
                 }
             }
 
-            healthManager.ApplyDamage(damageAmount);
+            if(hookdamageAmount! == 0.0f)
+            {
+                healthManager.ApplyDamage(hookdamageAmount);
+            }
+
+            else if (heavydamageAmount! == 0.0f)
+            {
+                healthManager.ApplyDamage(heavydamageAmount);
+            }
+
+            
         }
     }
 }
