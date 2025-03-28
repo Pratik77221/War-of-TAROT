@@ -60,7 +60,7 @@ public class LightEstimationController : MonoBehaviour
          if (args.lightEstimation.mainLightIntensityLumens.HasValue)
         {
              // Update the directional light's intensity
-            directionalLight.intensity = args.lightEstimation.mainLightIntensityLumens.Value;
+            directionalLight.intensity = Mathf.Clamp(args.lightEstimation.mainLightIntensityLumens.Value, 0.5f, 3.0f);
 
             // Adjust shadow strength based on light intensity
             float shadowStrength = Mathf.Clamp(args.lightEstimation.mainLightIntensityLumens.Value, 0.5f, 1f);

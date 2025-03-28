@@ -67,7 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0.07
+  hookPunchDamage: 0.1
+  heavyPunchDamage: 0.3
+  magicAttackDamage: 0.5
 --- !u!1 &613441212377722148
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +663,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0.06
+  hookPunchDamage: 0.1
+  heavyPunchDamage: 0.3
+  magicAttackDamage: 0.5
 --- !u!1 &3691971595250658129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   healthBar: {fileID: 1533635121052572466}
+  delayTime: 0
 --- !u!1 &5999479503677080181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4406265503854710853}
   m_Layer: 7
-  m_Name: Special_Attack_Position
+  m_Name: FireballSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1223,7 +1228,7 @@ Transform:
   m_GameObject: {fileID: 6797463982323613667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.023, y: 1.267, z: 0.332}
+  m_LocalPosition: {x: 0, y: 1.267, z: 0.617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

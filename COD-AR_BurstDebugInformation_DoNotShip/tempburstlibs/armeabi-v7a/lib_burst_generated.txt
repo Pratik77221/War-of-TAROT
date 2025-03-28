@@ -9,6 +9,7 @@ Library: D:\Unity Projects\COD AR\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projects\COD AR\Temp\Burst
+--debug=LineOnly
 --key-folder=D:/Unity/Hub/Editor/2022.3.6f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=D:\Unity Projects\COD AR\Library\Burst
 --output=D:\Unity Projects\COD AR\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated

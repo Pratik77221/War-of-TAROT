@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6709977880555280118}
   m_Layer: 7
-  m_Name: Special_Attack_Position
+  m_Name: FireballSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,6 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   healthBar: {fileID: 2911030136036663980}
+  delayTime: 0
 --- !u!1 &5778465353430836513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +1100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0.05
+  hookPunchDamage: 0.1
+  heavyPunchDamage: 0.3
+  magicAttackDamage: 0.5
 --- !u!1 &7564292419426865356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,7 +1455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0.1
+  hookPunchDamage: 0.1
+  heavyPunchDamage: 0.3
+  magicAttackDamage: 0.5
 --- !u!1 &9044912502628224273
 GameObject:
   m_ObjectHideFlags: 0

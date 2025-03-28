@@ -3,7 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class PlayerNameDisplay : MonoBehaviourPunCallbacks // Changed base class
+public class PlayerNameDisplay : MonoBehaviourPunCallbacks 
 {
     [Header("Text References")]
     public TextMeshPro player1Text;
@@ -16,14 +16,14 @@ public class PlayerNameDisplay : MonoBehaviourPunCallbacks // Changed base class
 
     void UpdatePlayerNames()
     {
-        // Get all players from Photon network
+        
         Player[] players = PhotonNetwork.PlayerList;
 
-        // Reset both texts first
+        
         player1Text.text = "Waiting for Player 1...";
         player2Text.text = "Waiting for Player 2...";
 
-        // Update names from LobbyManager's Photon network data
+        
         foreach (Player player in players)
         {
             if (player.IsMasterClient)

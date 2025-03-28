@@ -4,10 +4,13 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Controll the selected character and also attack using the same 
+/// Controls the selected character and handles movement and attacks.
 /// </summary>
 public class CharacterMovementController : MonoBehaviour
 {
+    public enum AttackType { None, HookPunch, HeavyPunch, MagicAttack }
+    public AttackType currentAttack = AttackType.None;
+
     [Header("Input Actions")]
     public InputActionReference moveAction;
     public InputActionReference rotateAction;
@@ -25,33 +28,24 @@ public class CharacterMovementController : MonoBehaviour
     [Header("Attack Settings")]
     public Button hookPunchButton;
     public Button heavyPunchButton;
+    public Button magicAttackButton; 
 
-    public Button specialAttackButton;
-
-    public Transform specialAttackSpawnPoint;
-
-    public GameObject Fireball;
-
-    // Cooldown timers (in seconds)
+    // Cooldown timers 
     private float hookPunchCooldownTimer = 0f;
     private float heavyPunchCooldownTimer = 0f;
-
-    private float specialAttackCooldownTimer = 0f;
+    private float magicAttackCooldownTimer = 0f;
 
     // Cooldown durations
     [Tooltip("Minimal cooldown for hook punch. Set to 0 for immediate re-trigger.")]
     public float hookPunchCooldownDuration = 0f;
     [Tooltip("Cooldown for heavy punch.")]
     public float heavyPunchCooldownDuration = 5f;
+    [Tooltip("Cooldown for magic attack.")]
+    public float magicAttackCooldownDuration = 3f;  
 
-    [Tooltip("Cooldown for Special Attack.")]
-    public float specialAttackCooldownDuration = 15f;
-
-    [Header("Damage Settings")]
-    public float hookPunchDamage = 0.1f;
-    public float heavyPunchDamage = 0.3f;
-
-    public float specialAttackDamage = 1.0f;
+    [Header("Magic Attack Projectile Settings")]
+    public GameObject fireballPrefab;      
+    public Transform fireballSpawnPoint;   
 
     private PhotonView photonView;
 
@@ -60,9 +54,10 @@ public class CharacterMovementController : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         characterAnimator = GetComponent<Animator>();
 
-        // Add button listeners
+        
         hookPunchButton.onClick.AddListener(PerformHookPunch);
         heavyPunchButton.onClick.AddListener(PerformHeavyPunch);
+        magicAttackButton.onClick.AddListener(PerformMagicAttack);
     }
 
     void OnEnable()
@@ -90,11 +85,13 @@ public class CharacterMovementController : MonoBehaviour
             // Enable attack buttons for our local player
             hookPunchButton.interactable = true;
             heavyPunchButton.interactable = true;
+            magicAttackButton.interactable = true;
         }
         else
         {
             hookPunchButton.interactable = false;
             heavyPunchButton.interactable = false;
+            magicAttackButton.interactable = false;
         }
     }
 
@@ -113,17 +110,19 @@ public class CharacterMovementController : MonoBehaviour
             hookPunchCooldownTimer -= Time.deltaTime;
         if (heavyPunchCooldownTimer > 0f)
             heavyPunchCooldownTimer -= Time.deltaTime;
+        if (magicAttackCooldownTimer > 0f)
+            magicAttackCooldownTimer -= Time.deltaTime;
     }
 
     void HandleMovementInput()
     {
-        // Only need the vertical axis (y in the Vector2) for forward/back movement
+       
         currentMoveInput = moveAction.action.ReadValue<Vector2>().y;
     }
 
     void HandleRotationInput()
     {
-        // Only need the horizontal axis (x in the Vector2) for rotation
+        
         currentRotationInput = rotateAction.action.ReadValue<Vector2>().x;
     }
 
@@ -142,14 +141,15 @@ public class CharacterMovementController : MonoBehaviour
         if (characterAnimator == null)
             return;
 
-        // Retrieve current animation state info from layer 0
+       
         AnimatorStateInfo stateInfo = characterAnimator.GetCurrentAnimatorStateInfo(0);
 
-        // If an attack animation is playing and hasn't finished, do nothing
-        if ((stateInfo.IsName("HookPunch") || stateInfo.IsName("HeavyPunch")) && stateInfo.normalizedTime < 1f)
+       
+        if ((stateInfo.IsName("HookPunch") || stateInfo.IsName("HeavyPunch") || stateInfo.IsName("MagicAttack")) && stateInfo.normalizedTime < 1f)
             return;
 
-        // Otherwise, switch to run or idle based on movement
+
+        
         bool isMoving = Mathf.Abs(currentSpeed) > 0f;
         if (isMoving && !stateInfo.IsName("Run"))
         {
@@ -162,17 +162,17 @@ public class CharacterMovementController : MonoBehaviour
     }
 
     // --------------------------------------------------------
-    // ATTACK ANIMATION LOGIC (No damage logic)
+    // ATTACK ANIMATION LOGIC 
     // --------------------------------------------------------
 
     public void PerformHookPunch()
     {
-      if (currentSelectedCharacter != null && hookPunchCooldownTimer <= 0f)
+        if (currentSelectedCharacter != null && hookPunchCooldownTimer <= 0f)
         {
             PhotonView pv = currentSelectedCharacter.GetComponent<PhotonView>();
             if (pv != null && pv.IsMine)
             {
-                // Restart the "HookPunch" animation from the beginning regardless of the current state
+                currentAttack = AttackType.HookPunch;
                 characterAnimator.Play("HookPunch", 0, 0f);
                 hookPunchCooldownTimer = hookPunchCooldownDuration;
             }
@@ -186,25 +186,40 @@ public class CharacterMovementController : MonoBehaviour
             PhotonView pv = currentSelectedCharacter.GetComponent<PhotonView>();
             if (pv != null && pv.IsMine)
             {
-                // Restart the "HeavyPunch" animation from the beginning regardless of the current state
+                currentAttack = AttackType.HeavyPunch;
                 characterAnimator.Play("HeavyPunch", 0, 0f);
                 heavyPunchCooldownTimer = heavyPunchCooldownDuration;
             }
         }
     }
 
-    public void PerformSpecialAttack()
+    public void PerformMagicAttack()
     {
-        if (currentSelectedCharacter != null && specialAttackCooldownTimer <= 0f)
+        if (currentSelectedCharacter != null && magicAttackCooldownTimer <= 0f)
         {
             PhotonView pv = currentSelectedCharacter.GetComponent<PhotonView>();
             if (pv != null && pv.IsMine)
             {
-                // Restart the "HeavyPunch" animation from the beginning regardless of the current state
+                currentAttack = AttackType.MagicAttack;
+
+                // Play the magic attack animation.
                 characterAnimator.Play("MagicAttack", 0, 0f);
 
-                specialAttackCooldownTimer= specialAttackCooldownDuration;
+                magicAttackCooldownTimer = magicAttackCooldownDuration;
+
+                // Always retrieve the spawn point from the current selected character.
+                Transform spawnPoint = currentSelectedCharacter.transform.Find("FireballSpawnPoint");
+                if (spawnPoint != null && fireballPrefab != null)
+                {
+                    // Spawn the fireball on the network.
+                    PhotonNetwork.Instantiate(fireballPrefab.name, spawnPoint.position, spawnPoint.rotation);
+                }
+                else
+                {
+                    Debug.LogWarning("Fireball spawn point or fireball prefab not found on the current selected character.");
+                }
             }
         }
     }
+
 }
