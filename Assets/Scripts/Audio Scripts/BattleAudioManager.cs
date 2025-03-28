@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        PlayBattleMusic();
     }
 
     void Start()
@@ -41,5 +42,13 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource battleMusic = GameObject.Find("Battle Music").GetComponent<AudioSource>();
         battleMusic.Play();
+    }
+
+    public void PlayIdleMusic()
+    {
+
+        AudioSource idleMusic = GameObject.Find("Idle Music").GetComponent<AudioSource>();
+        idleMusic.Play();
+
     }
 }
