@@ -9,9 +9,11 @@ public class CharacterHealth : MonoBehaviourPun
     public float currentHealth = 1f;
 
     public Slider healthBar;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         if (healthBar != null)
         {
             healthBar.value = currentHealth;
@@ -28,6 +30,12 @@ public class CharacterHealth : MonoBehaviourPun
         if (healthBar != null)
         {
             healthBar.value = currentHealth;
+        }
+
+
+        if (currentHealth <= 0f && animator != null)
+        {
+            animator.Play("Die");
         }
     }
 
