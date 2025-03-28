@@ -154,6 +154,7 @@ public class CharacterMovementController : MonoBehaviour
         if (isMoving && !stateInfo.IsName("Run"))
         {
             characterAnimator.Play("Run");
+            AudioManager.PlaySound(SoundType.RUN);
         }
         else if (!isMoving && !stateInfo.IsName("Idle"))
         {
@@ -175,6 +176,7 @@ public class CharacterMovementController : MonoBehaviour
                 // Restart the "HookPunch" animation from the beginning regardless of the current state
                 characterAnimator.Play("HookPunch", 0, 0f);
                 hookPunchCooldownTimer = hookPunchCooldownDuration;
+                AudioManager.PlaySound(SoundType.HOOKPUNCH);
             }
         }
     }
@@ -189,6 +191,7 @@ public class CharacterMovementController : MonoBehaviour
                 // Restart the "HeavyPunch" animation from the beginning regardless of the current state
                 characterAnimator.Play("HeavyPunch", 0, 0f);
                 heavyPunchCooldownTimer = heavyPunchCooldownDuration;
+                AudioManager.PlaySound(SoundType.HEAVYHIT);
             }
         }
     }
@@ -204,6 +207,7 @@ public class CharacterMovementController : MonoBehaviour
                 characterAnimator.Play("MagicAttack", 0, 0f);
 
                 specialAttackCooldownTimer= specialAttackCooldownDuration;
+                AudioManager.PlaySound(SoundType.SPECIALATTACK);
             }
         }
     }

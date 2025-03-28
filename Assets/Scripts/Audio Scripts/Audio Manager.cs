@@ -3,22 +3,37 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum SoundType
+{
+
+    DEATH,
+    HEAVYHIT,
+    HOOKPUNCH,
+    SPECIALATTACK,
+    RUN
+
+}
+
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
+    [SerializeField] private AudioClip[] soundList;
     public static AudioManager instance { get; private set;}
+    private AudioSource audioSource;
 
-
-    
-    void Start()
+    void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+     audioSource = GetComponent<AudioSource>();   
+    }
+
+    public static void PlaySound(SoundType sound, float volume = 1)
+    {
+        instance.audioSource.PlayOneShot(instance.soundList[(int)sound], volume);
+
     }
 }
