@@ -36,4 +36,10 @@ public class AudioManager : MonoBehaviour
         instance.audioSource.PlayOneShot(instance.soundList[(int)sound], volume);
 
     }
+
+    public void PlayBattleMusic()
+    {
+        AudioSource battleMusic = GameObject.Find("Battle Music").GetComponent<AudioSource>();
+        battleMusic.Play();
+    }
 }
