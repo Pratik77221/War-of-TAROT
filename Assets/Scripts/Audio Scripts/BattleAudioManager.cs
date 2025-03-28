@@ -6,11 +6,22 @@ using UnityEngine;
 public enum SoundType
 {
 
-    DEATH,
+    DIE,
     HEAVYHIT,
     HOOKPUNCH,
     SPECIALATTACK,
-    RUN
+    RUN,
+
+    DEATH,
+    JUSTICE,
+    STRENGTH,
+    DEVIL,
+    FOOL,
+    HERMIT,
+    MAGICIAN,
+    STAR,
+    TOWER,
+    WORLD
 
 }
 
