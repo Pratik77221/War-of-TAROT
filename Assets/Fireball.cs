@@ -20,15 +20,7 @@ public class Fireball : MonoBehaviourPun
         Invoke("DestroySelf", lifetime);
     }
 
-    private void Update()
-    {
-        if (rb != null)
-        {
 
-            rb.velocity = transform.forward * speed;
-        }
-        Invoke("DestroySelf", lifetime);
-    }
 
     void DestroySelf()
     {

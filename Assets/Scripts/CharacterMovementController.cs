@@ -28,7 +28,7 @@ public class CharacterMovementController : MonoBehaviour
     [Header("Attack Settings")]
     public Button hookPunchButton;
     public Button heavyPunchButton;
-    public Button magicAttackButton; 
+    public Button magicAttackButton;
 
     // Cooldown timers 
     private float hookPunchCooldownTimer = 0f;
@@ -41,11 +41,11 @@ public class CharacterMovementController : MonoBehaviour
     [Tooltip("Cooldown for heavy punch.")]
     public float heavyPunchCooldownDuration = 5f;
     [Tooltip("Cooldown for magic attack.")]
-    public float magicAttackCooldownDuration = 3f;  
+    public float magicAttackCooldownDuration = 3f;
 
     [Header("Magic Attack Projectile Settings")]
-    public GameObject fireballPrefab;      
-    public Transform fireballSpawnPoint;   
+    public GameObject fireballPrefab;
+    public Transform fireballSpawnPoint;
 
     private PhotonView photonView;
 
@@ -54,7 +54,7 @@ public class CharacterMovementController : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         characterAnimator = GetComponent<Animator>();
 
-        
+
         hookPunchButton.onClick.AddListener(PerformHookPunch);
         heavyPunchButton.onClick.AddListener(PerformHeavyPunch);
         magicAttackButton.onClick.AddListener(PerformMagicAttack);
@@ -116,13 +116,13 @@ public class CharacterMovementController : MonoBehaviour
 
     void HandleMovementInput()
     {
-       
+
         currentMoveInput = moveAction.action.ReadValue<Vector2>().y;
     }
 
     void HandleRotationInput()
     {
-        
+
         currentRotationInput = rotateAction.action.ReadValue<Vector2>().x;
     }
 
@@ -141,15 +141,15 @@ public class CharacterMovementController : MonoBehaviour
         if (characterAnimator == null)
             return;
 
-       
+
         AnimatorStateInfo stateInfo = characterAnimator.GetCurrentAnimatorStateInfo(0);
 
-       
+
         if ((stateInfo.IsName("HookPunch") || stateInfo.IsName("HeavyPunch") || stateInfo.IsName("MagicAttack")) && stateInfo.normalizedTime < 1f)
             return;
 
 
-        
+
         bool isMoving = Mathf.Abs(currentSpeed) > 0f;
         if (isMoving && !stateInfo.IsName("Run"))
         {
