@@ -12,12 +12,40 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabsToSpawn;
 
+
+    [SerializeField] private AudioSource audioSource; // Assign in Inspector
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip justiceSound;
+    [SerializeField] private AudioClip strengthSound;
+    [SerializeField] private AudioClip theDevilSound;
+    [SerializeField] private AudioClip theFoolSound;
+    [SerializeField] private AudioClip theHermitSound;
+    [SerializeField] private AudioClip theMagicianSound;
+    [SerializeField] private AudioClip theStarSound;
+    [SerializeField] private AudioClip theTowerSound;
+    [SerializeField] private AudioClip theWorldSound; 
+
     private ARTrackedImageManager _arTrackedImageManager;
     private Dictionary<string, GameObject> _arObjects = new Dictionary<string, GameObject>();
+    private Dictionary<string, AudioClip> tarotSounds = new Dictionary<string, AudioClip>();
 
     private void Awake()
     {
         _arTrackedImageManager = GetComponent<ARTrackedImageManager>();
+        
+        tarotSounds.Add("Death", deathSound);
+        tarotSounds.Add("Justice", justiceSound);
+        tarotSounds.Add("Strength", strengthSound);
+        tarotSounds.Add("TheDevil", theDevilSound);
+        tarotSounds.Add("TheFool", theFoolSound);
+        tarotSounds.Add("TheHermit", theHermitSound);
+        tarotSounds.Add("TheMagician", theMagicianSound);
+        tarotSounds.Add("TheStar", theStarSound);
+        tarotSounds.Add("TheTower", theTowerSound);
+        tarotSounds.Add("TheWorld", theWorldSound); 
+        
+        
+        
         foreach (GameObject prefab in prefabsToSpawn)
         {
             GameObject newARObject = Instantiate(prefab, Vector3.zero, Quaternion.identity);
@@ -74,5 +102,22 @@ public class ObjectSpawner : MonoBehaviour
         arObject.SetActive(true);
         arObject.transform.position = trackedImage.transform.position;
         arObject.transform.rotation = trackedImage.transform.rotation;
+
+       PlayTarotSound(trackedImage.referenceImage.name);
     }
+
+    private void PlayTarotSound(string detectedCardName)
+    {
+        if (tarotSounds.TryGetValue(detectedCardName, out AudioClip soundClip))
+        {
+            audioSource.PlayOneShot(soundClip);
+        }
+        else
+        {
+            Debug.LogWarning("No sound assigned for card: " + detectedCardName);
+        }
+    }
+
 }
+
+// ADD SWITCH STATEMENT LIKE IF NAME IS   PLAY    
