@@ -10,7 +10,8 @@ public enum SoundType
     HEAVYHIT,
     HOOKPUNCH,
     SPECIALATTACK,
-    RUN
+    RUN,
+
 
 }
 
@@ -24,6 +25,7 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        PlayBattleMusic();
     }
 
     void Start()
@@ -34,6 +36,20 @@ public class AudioManager : MonoBehaviour
     public static void PlaySound(SoundType sound, float volume = 1)
     {
         instance.audioSource.PlayOneShot(instance.soundList[(int)sound], volume);
+
+    }
+
+    public void PlayBattleMusic()
+    {
+        AudioSource battleMusic = GameObject.Find("Battle Music").GetComponent<AudioSource>();
+        battleMusic.Play();
+    }
+
+    public void PlayIdleMusic()
+    {
+
+        AudioSource idleMusic = GameObject.Find("Idle Music").GetComponent<AudioSource>();
+        idleMusic.Play();
 
     }
 }
