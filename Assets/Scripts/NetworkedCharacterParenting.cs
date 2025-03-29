@@ -2,6 +2,9 @@ using Photon.Pun;
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Parent the spawnned character  to the env so they follow the movement and remain inside
+/// </summary>
 public class NetworkedCharacterParenting : MonoBehaviourPun
 {
     private int spawnIndex = -1;

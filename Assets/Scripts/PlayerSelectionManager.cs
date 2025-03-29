@@ -35,6 +35,29 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
     private List<ScannedCard> scannedCardsPlayer1 = new List<ScannedCard>();
     private List<ScannedCard> scannedCardsPlayer2 = new List<ScannedCard>();
 
+
+    /*void UpdateUI()
+    {
+        // Simple text display without sorting
+        player1Text.text = "Player 1:\n" + string.Join("\n", player1Cards);
+        player2Text.text = "Player 2:\n" + string.Join("\n", player2Cards);
+
+        // Basic start 
+        startButton.gameObject.SetActive(player1Cards.Count >= 1 && player2Cards.Count >= 1);
+    }
+
+    public void SwitchPlayer()
+    {
+        currentPlayer = currentPlayer == "Player1" ? "Player2" : "Player1";
+    }
+
+    public void StartGame()
+    {
+        // scene load without networking
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainGame");
+    }*/
+
+
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -201,8 +224,7 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         startGameButton.gameObject.SetActive(
             scannedCardsPlayer1.Count >= 5 && scannedCardsPlayer2.Count >= 5);
 
-        // Update local GameManager lists
-        if (PhotonNetwork.IsMasterClient)
+         if (PhotonNetwork.IsMasterClient)
         {
             GameManager.Instance.player1Cards.Clear();
             foreach (var card in scannedCardsPlayer1)
@@ -233,7 +255,8 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Only the Master Client (Player1) can start the game.
+
+    // Only the Master Client can start the game.
     public void OnStartGameButtonClicked()
     {
         if (PhotonNetwork.IsMasterClient)

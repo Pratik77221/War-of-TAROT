@@ -3,20 +3,24 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Not used/ Test Script
+/// </summary>
+
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public Text infoText;
 
-    // Start is called before the first frame update
+ 
     void Start()
     {
-        // Set your game version
+      
         PhotonNetwork.GameVersion = "v01";
-        // Connect using the settings (no parameter needed)
+     
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         if (!PhotonNetwork.InRoom)
@@ -31,7 +35,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
 
-    //ince we're inheriting from MonoBehaviourPunCallbacks, you should override the callback methods using the override keyword.
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Server");

@@ -1,25 +1,23 @@
 using UnityEngine;
 using Photon.Pun;
-using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public class DeathManager : MonoBehaviourPun
 {
     public static DeathManager Instance;
 
-    // Death counters for each player's characters.
     private int player1DeathCount = 0;
     private int player2DeathCount = 0;
 
-    // Reference to the Game Over panel (assign via the Inspector)
     public GameObject gameOverPanel;
+    public TMP_Text winnerText;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            // Optionally persist this manager across scenes.
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -28,24 +26,53 @@ public class DeathManager : MonoBehaviourPun
         }
     }
 
-    /// <summary>
-    /// Registers the death of a character. Only when 5 characters of a single player die will the game end.
-    /// </summary>
+    /*
+     public void RegisterDeath(string characterName)
+    {
+        // Simple death registration without Photon or card checks
+        if (characterName.Contains("Player1"))
+        {
+            player1Deaths++;
+        }
+        else if (characterName.Contains("Player2"))
+        {
+            player2Deaths++;
+        }
+        
+        UpdateDeathText();
+        
+        // Basic game over check
+        if (player1Deaths >= 5 || player2Deaths >= 5)
+        {
+            EndGame();
+        }
+    }
+    */
+
     /// <param name="deadCharacterName">Name of the character that died.</param>
     public void RegisterDeath(string deadCharacterName)
     {
-        // Clean the name (remove any "(Clone)" suffix)
         string cleanedName = deadCharacterName.Replace("(Clone)", "").Trim();
 
-        // Check which player's card list contains this character.
         if (GameManager.Instance.player1Cards.Contains(cleanedName))
         {
             player1DeathCount++;
             Debug.Log("Player1 death count: " + player1DeathCount);
             if (player1DeathCount >= 5)
             {
-                // Trigger game over via RPC to all clients.
-                photonView.RPC("RPC_EndGame", RpcTarget.All);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    string winningPlayerName = "";
+                    foreach (var player in PhotonNetwork.PlayerList)
+                    {
+                        if (!player.IsMasterClient)
+                        {
+                            winningPlayerName = player.NickName;
+                            break;
+                        }
+                    }
+                    photonView.RPC("RPC_EndGame", RpcTarget.All, winningPlayerName);
+                }
             }
         }
         else if (GameManager.Instance.player2Cards.Contains(cleanedName))
@@ -54,8 +81,11 @@ public class DeathManager : MonoBehaviourPun
             Debug.Log("Player2 death count: " + player2DeathCount);
             if (player2DeathCount >= 5)
             {
-                // Trigger game over via RPC to all clients.
-                photonView.RPC("RPC_EndGame", RpcTarget.All);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    string winningPlayerName = PhotonNetwork.MasterClient.NickName;
+                    photonView.RPC("RPC_EndGame", RpcTarget.All, winningPlayerName);
+                }
             }
         }
         else
@@ -65,18 +95,19 @@ public class DeathManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RPC_EndGame()
+    void RPC_EndGame(string winningPlayerName)
     {
-        // Show the Game Over panel on this client.
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
         }
+
+        if (winnerText != null)
+        {
+            winnerText.text = winningPlayerName;
+        }
     }
 
-    /// <summary>
-    /// Called from the Game Over UI button to return to the lobby scene.
-    /// </summary>
     public void OnReturnToLobbyButtonClicked()
     {
         PhotonNetwork.LoadLevel("Lobby");

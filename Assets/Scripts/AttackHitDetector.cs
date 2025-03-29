@@ -6,7 +6,21 @@ public class AttackHitDetector : MonoBehaviour
     [Header("Damage Settings")]
     public float hookPunchDamage = 0.1f;  
     public float heavyPunchDamage = 0.3f; 
-    public float magicAttackDamage = 0.5f; 
+    public float magicAttackDamage = 0.5f;
+
+
+    /*
+    void OnTriggerEnter(Collider other)
+    {
+       
+        CharacterHealth healthManager = other.GetComponent<CharacterHealth>();
+        if (healthManager != null)
+        {
+           
+            healthManager.ApplyDamage(hookPunchDamage);
+        }
+    }
+    */
 
     void OnTriggerEnter(Collider other)
     {
@@ -27,7 +41,12 @@ public class AttackHitDetector : MonoBehaviour
 
             
             CharacterMovementController movementController = GetComponentInParent<CharacterMovementController>();
-            float appliedDamage = hookPunchDamage; // default damage
+            float appliedDamage = hookPunchDamage; 
+
+            
+               
+                //appliedDamage = hookPunchDamage;
+               
 
             if (movementController != null)
             {

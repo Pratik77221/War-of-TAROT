@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviourPun
         player2Cards.AddRange(cards);
     }
 
-    // (Optional) Similar RPC for Player1 if needed
     [PunRPC]
     public void RPC_SetPlayer1Cards(string[] cards)
     {
