@@ -3,7 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class PlayerNameDisplay : MonoBehaviourPunCallbacks // Changed base class
+public class PlayerNameDisplayUI : MonoBehaviourPunCallbacks // Changed base class
 {
     [Header("Text References")]
     public TextMeshPro player1Text;

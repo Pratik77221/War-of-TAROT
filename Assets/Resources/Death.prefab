@@ -2355,7 +2355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0.05
+  hookPunchDamage: 0.1
+  heavyPunchDamage: 0.3
+  magicAttackDamage: 0.5
 --- !u!1 &4671278650649034569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,6 +2581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   healthBar: {fileID: 2170658534032101414}
+  delayTime: 0
 --- !u!1 &4804993291452385332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4297,7 +4300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea7a930138f0647853f4b62e5d76f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0.1
+  hookPunchDamage: 0.1
+  heavyPunchDamage: 0.3
+  magicAttackDamage: 0.5
 --- !u!1 &6730192789000029117
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,7 +4923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4899384722079591354}
   m_Layer: 7
-  m_Name: Special_Attack_Position
+  m_Name: FireballSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4933,7 +4938,7 @@ Transform:
   m_GameObject: {fileID: 7697151060086336255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.023, y: 1.497, z: 0.19}
+  m_LocalPosition: {x: -0.023, y: 1.497, z: 0.459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5697,6 +5702,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5447217559235290611}
     m_Modifications:
+    - target: {fileID: 700218392752242729, guid: d13de0acfcd0c5e4f81df9d5905d4e76,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1573135707318585488, guid: d13de0acfcd0c5e4f81df9d5905d4e76,
         type: 3}
       propertyPath: m_AnchorMax.x

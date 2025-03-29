@@ -123,6 +123,8 @@ public class ARGameManager : MonoBehaviourPunCallbacks
 
         spawnPoints = environmentInstance.GetComponent<EnvironmentSpawnPoints>();
 
+        HideARPlanes();
+
         if (PhotonNetwork.IsMasterClient)
         {
             masterReady = true;
@@ -134,6 +136,20 @@ public class ARGameManager : MonoBehaviourPunCallbacks
         }
 
         CheckBothReady();
+    }
+
+    // method to hide AR planes.
+    void HideARPlanes()
+    {
+        ARPlaneManager planeManager = FindObjectOfType<ARPlaneManager>();
+        if (planeManager != null)
+        {
+            foreach (var plane in planeManager.trackables)
+            {
+                plane.gameObject.SetActive(false);
+            }
+            planeManager.enabled = false;
+        }
     }
 
     [PunRPC]
