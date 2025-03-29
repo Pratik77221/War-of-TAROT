@@ -112,6 +112,18 @@ public class ARGameManager : MonoBehaviourPunCallbacks
             CreateLocalEnvironment(resolvedAnchor.transform);
     }
 
+
+    /*
+   void CreateLocalEnvironment(Transform anchorTransform)
+   {
+       
+       environmentInstance = Instantiate(objectToPlace, anchorTransform.position, anchorTransform.rotation);
+       spawnPoints = environmentInstance.GetComponent<EnvironmentSpawnPoints>();
+       HideARPlanes();
+       photonView.RPC("RPC_SpawnAllCharacters", RpcTarget.AllBuffered);
+   }
+   */
+
     void CreateLocalEnvironment(Transform anchorTransform)
     {
         if (environmentPlaced) return;
@@ -186,6 +198,17 @@ public class ARGameManager : MonoBehaviourPunCallbacks
             SpawnPlayerCharacters(GameManager.Instance.player2Cards, 5, 1);
         }
     }
+
+
+    /*
+   void SpawnPlayerCharacters(List<string> characterPrefabNames, int startIndex, int playerIndex)
+   {
+       foreach (string prefabName in characterPrefabNames)
+       {
+           PhotonNetwork.Instantiate(prefabName, Vector3.zero, Quaternion.identity);
+       }
+   }
+   */
 
     void SpawnPlayerCharacters(List<string> characterPrefabNames, int startIndex, int playerIndex)
     {

@@ -34,19 +34,24 @@ public class CharacterHealth : MonoBehaviourPun
             animator.Play("Die");
             StartCoroutine(DestroyAfterDelayCoroutine());
         }
+
+        /*if (currentHealth <= 0f)
+        {
+            Destroy(gameObject);
+        }*/
     }
 
     private IEnumerator DestroyAfterDelayCoroutine()
     {
         yield return new WaitForSeconds(delayTime);
 
-        // Register the death with the DeathManager before destroying the character.
+        
         if (DeathManager.Instance != null)
         {
             DeathManager.Instance.RegisterDeath(gameObject.name);
         }
 
-        // Destroy the networked object so that it is removed for all players.
+        
         if (photonView.IsMine)
         {
             PhotonNetwork.Destroy(gameObject);

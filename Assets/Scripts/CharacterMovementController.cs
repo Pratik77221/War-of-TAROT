@@ -47,6 +47,13 @@ public class CharacterMovementController : MonoBehaviour
     public GameObject fireballPrefab;
     public Transform fireballSpawnPoint;
 
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip hookPunchClip;
+    public AudioClip heavyPunchClip;
+    public AudioClip magicAttackClip;
+
     private PhotonView photonView;
 
     void Start()
@@ -54,6 +61,10 @@ public class CharacterMovementController : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         characterAnimator = GetComponent<Animator>();
 
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         hookPunchButton.onClick.AddListener(PerformHookPunch);
         heavyPunchButton.onClick.AddListener(PerformHeavyPunch);
@@ -113,6 +124,27 @@ public class CharacterMovementController : MonoBehaviour
         if (magicAttackCooldownTimer > 0f)
             magicAttackCooldownTimer -= Time.deltaTime;
     }
+
+    /*void Update()
+    {
+        
+        float moveInput = Input.GetAxis("Vertical");
+        rotationInput = Input.GetAxis("Horizontal");
+
+        currentSpeed = moveInput * moveSpeed;
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, rotationInput * rotationSpeed * Time.deltaTime);
+
+       
+        if (Mathf.Abs(currentSpeed) > 0.1f)
+        {
+            characterAnimator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            characterAnimator.SetBool("IsRunning", false);
+        }
+    }*/
 
     void HandleMovementInput()
     {
@@ -175,6 +207,11 @@ public class CharacterMovementController : MonoBehaviour
                 currentAttack = AttackType.HookPunch;
                 characterAnimator.Play("HookPunch", 0, 0f);
                 hookPunchCooldownTimer = hookPunchCooldownDuration;
+
+                if (audioSource != null && hookPunchClip != null)
+                {
+                    audioSource.PlayOneShot(hookPunchClip);
+                }
             }
         }
     }
@@ -189,6 +226,11 @@ public class CharacterMovementController : MonoBehaviour
                 currentAttack = AttackType.HeavyPunch;
                 characterAnimator.Play("HeavyPunch", 0, 0f);
                 heavyPunchCooldownTimer = heavyPunchCooldownDuration;
+
+                if (audioSource != null && heavyPunchClip != null)
+                {
+                    audioSource.PlayOneShot(heavyPunchClip);
+                }
             }
         }
     }
@@ -202,16 +244,21 @@ public class CharacterMovementController : MonoBehaviour
             {
                 currentAttack = AttackType.MagicAttack;
 
-                // Play the magic attack animation.
+                
                 characterAnimator.Play("MagicAttack", 0, 0f);
 
                 magicAttackCooldownTimer = magicAttackCooldownDuration;
 
-                // Always retrieve the spawn point from the current selected character.
+                if (audioSource != null && magicAttackClip != null)
+                {
+                    audioSource.PlayOneShot(magicAttackClip);
+                }
+
+                
                 Transform spawnPoint = currentSelectedCharacter.transform.Find("FireballSpawnPoint");
                 if (spawnPoint != null && fireballPrefab != null)
                 {
-                    // Spawn the fireball on the network.
+                    
                     PhotonNetwork.Instantiate(fireballPrefab.name, spawnPoint.position, spawnPoint.rotation);
                 }
                 else
@@ -221,5 +268,28 @@ public class CharacterMovementController : MonoBehaviour
             }
         }
     }
+
+
+    /*
+     *  void PerformPunch()
+    {
+        characterAnimator.SetTrigger("Punch");
+    }
+    
+    void PerformSpecialAttack()
+    {
+        
+        characterAnimator.SetTrigger("SpecialAttack");
+        
+       
+        Transform spawnPoint = transform.Find("AttackSpawnPoint");
+        if (spawnPoint != null)
+        {
+            Instantiate(Resources.Load("Fireball"), 
+                      spawnPoint.position, 
+                      spawnPoint.rotation);
+        }
+    }
+    */
 
 }
