@@ -39,7 +39,22 @@ public class CharacterHealth : MonoBehaviourPun
     private IEnumerator DestroyAfterDelayCoroutine()
     {
         yield return new WaitForSeconds(delayTime);
-        Destroy(gameObject);
+
+        // Register the death with the DeathManager before destroying the character.
+        if (DeathManager.Instance != null)
+        {
+            DeathManager.Instance.RegisterDeath(gameObject.name);
+        }
+
+        // Destroy the networked object so that it is removed for all players.
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void ApplyDamage(float damagePercent)

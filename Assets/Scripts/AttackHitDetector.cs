@@ -4,9 +4,9 @@ using Photon.Pun;
 public class AttackHitDetector : MonoBehaviour
 {
     [Header("Damage Settings")]
-    public float hookPunchDamage = 0.1f;  // Hook punch damage
-    public float heavyPunchDamage = 0.3f; // Heavy punch damage
-    public float magicAttackDamage = 0.5f; // Magic attack damage
+    public float hookPunchDamage = 0.1f;  
+    public float heavyPunchDamage = 0.3f; 
+    public float magicAttackDamage = 0.5f; 
 
     void OnTriggerEnter(Collider other)
     {
@@ -18,14 +18,14 @@ public class AttackHitDetector : MonoBehaviour
 
             if (targetPhotonView != null && attackerPhotonView != null)
             {
-                // Prevent self damage
+               
                 if (targetPhotonView.Owner == attackerPhotonView.Owner)
                 {
                     return;
                 }
             }
 
-            // Instead of checking the animator, get the current attack type from CharacterMovementController
+            
             CharacterMovementController movementController = GetComponentInParent<CharacterMovementController>();
             float appliedDamage = hookPunchDamage; // default damage
 
@@ -46,7 +46,7 @@ public class AttackHitDetector : MonoBehaviour
                         appliedDamage = hookPunchDamage;
                         break;
                 }
-                // Reset attack state after applying damage so damage is only applied once per attack
+               
                 movementController.currentAttack = CharacterMovementController.AttackType.None;
             }
 
