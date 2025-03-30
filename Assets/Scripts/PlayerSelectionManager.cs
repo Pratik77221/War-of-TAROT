@@ -64,6 +64,15 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         currentPlayer = PhotonNetwork.IsMasterClient ? PLAYER1 : PLAYER2;
         startGameButton.gameObject.SetActive(false);
         trackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+        
+        // Check for AR support
+        if (trackedImageManager == null)
+        {
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowPersistentMessage("<color=red>Error: AR tracking not available. \n Please restart the app or check device compatibility.</color>");
+            }
+        }
     }
 
     void OnDisable()
@@ -81,6 +90,20 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
                 currentPlayer,
                 addedImage.transform.position.x,
                 addedImage.transform.position.z);
+        }
+        
+        // For empty tracking results
+        if (eventArgs.added.Count == 0 && eventArgs.updated.Count == 0 && eventArgs.removed.Count == 0)
+        {
+            // No cards detected for a while
+            if (currentPlayer == PLAYER1 && scannedCardsPlayer1.Count == 0 || 
+                currentPlayer == PLAYER2 && scannedCardsPlayer2.Count == 0)
+            {
+                if (TutorialManager.Instance != null && Time.frameCount % 300 == 0) // Show hint periodically
+                {
+                    TutorialManager.Instance.ShowTemporaryMessage("No cards detected. \n Make sure you're pointing at valid character cards in good lighting.", 3f);
+                }
+            }
         }
 
         // For updated images
@@ -221,8 +244,28 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
         player2SequenceText.text = textPlayer2;
 
         // Enable the start button only if both players have scanned at least 5 cards.
-        startGameButton.gameObject.SetActive(
-            scannedCardsPlayer1.Count >= 5 && scannedCardsPlayer2.Count >= 5);
+        //  startGameButton.gameObject.SetActive(
+        //     scannedCardsPlayer1.Count >= 5 && scannedCardsPlayer2.Count >= 5);
+        
+        bool canStart = scannedCardsPlayer1.Count >= 5 && scannedCardsPlayer2.Count >= 5;
+        startGameButton.gameObject.SetActive(canStart);
+        
+        // Show tutorial message when enough cards are scanned
+        if (TutorialManager.Instance != null)
+        {
+            if (canStart && PhotonNetwork.IsMasterClient)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("All players have selected their characters. \n It's time to fight!", 3f);
+            }
+            else if (scannedCardsPlayer1.Count >= 5 && PhotonNetwork.IsMasterClient)
+            {
+                TutorialManager.Instance.ShowPersistentMessage("Waiting for Player 2 to finish selecting...");
+            }
+            else if (scannedCardsPlayer2.Count >= 5 && !PhotonNetwork.IsMasterClient)
+            {
+                TutorialManager.Instance.ShowPersistentMessage("Waiting for Player 1 to finish selecting...");
+            }
+        }
 
          if (PhotonNetwork.IsMasterClient)
         {
@@ -261,6 +304,21 @@ public class PlayerSelectionManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            // Check if minimum cards are selected
+            if (scannedCardsPlayer1.Count < 5 || scannedCardsPlayer2.Count < 5)
+            {
+                if (TutorialManager.Instance != null)
+                {
+                    TutorialManager.Instance.ShowTemporaryMessage("<color=red>Each player must scan at least 5 cards before starting!</color>", 2f);
+                }
+                return;
+            }
+            
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("Battlefield Loading...", 1f);
+            }
+            
             PhotonNetwork.LoadLevel("ARGame");
         }
     }

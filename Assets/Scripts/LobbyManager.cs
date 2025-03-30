@@ -39,8 +39,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         string playerName = playerNameInputField.text;
         if (string.IsNullOrEmpty(playerName))
         {
-            Debug.Log("Player name is invalid or empty");
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowPersistentMessage("<color=red>Username cannot be empty!</color>");
+            }
             return;
+        }
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.HideTutorial();
         }
 
         PhotonNetwork.NickName = playerName;
@@ -51,6 +59,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master Server");
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowTemporaryMessage("<color=green>Connected to server successfully!</color>", 2f);
+        }
 
         PhotonNetwork.JoinRandomRoom();
     }
@@ -120,7 +133,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             {
                 if (waitingImage != null)
                     waitingImage.SetActive(false);
+
+                if (TutorialManager.Instance != null)
+                {
+                    TutorialManager.Instance.ShowTemporaryMessage("Room is full! Click Start to begin the game.", 2f);
+                }
             }
+        }
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowTemporaryMessage($"<color=green>{newPlayer.NickName} has joined the room!</color>", 2f);
         }
     }
 
@@ -165,11 +188,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("Starting game...", 1f);
+            }
             PhotonNetwork.LoadLevel("PlayerSelection");
         }
         else
         {
-            Debug.Log("Only the Master Client can start the game!");
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("<color=red>Only the host can start the game!</color>", 2f);
+            }
         }
     }
 }

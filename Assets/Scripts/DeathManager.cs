@@ -26,6 +26,15 @@ public class DeathManager : MonoBehaviourPun
         }
     }
 
+    // void Start()
+    // {
+    //     // Display game instructions when the game starts
+    //     if (TutorialManager.Instance != null)
+    //     {
+    //         TutorialManager.Instance.ShowTemporaryMessage("Game started! Defeat all opponent's characters to win.", 3f);
+    //     }
+    // }
+
     /*
      public void RegisterDeath(string characterName)
     {
@@ -58,6 +67,13 @@ public class DeathManager : MonoBehaviourPun
         {
             player1DeathCount++;
             Debug.Log("Player1 death count: " + player1DeathCount);
+            
+            // Show death count notification
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("Player 1 lost a character! (" + player1DeathCount + "/5)", 2f);
+            }
+            
             if (player1DeathCount >= 5)
             {
                 if (PhotonNetwork.IsMasterClient)
@@ -79,6 +95,13 @@ public class DeathManager : MonoBehaviourPun
         {
             player2DeathCount++;
             Debug.Log("Player2 death count: " + player2DeathCount);
+            
+            // Show death count notification
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("Player 2 lost a character! (" + player2DeathCount + "/5)", 2f);
+            }
+            
             if (player2DeathCount >= 5)
             {
                 if (PhotonNetwork.IsMasterClient)
@@ -110,6 +133,12 @@ public class DeathManager : MonoBehaviourPun
 
     public void OnReturnToLobbyButtonClicked()
     {
+        // Show returning message
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowTemporaryMessage("Returning to lobby...", 1f);
+        }
+        
         PhotonNetwork.LoadLevel("Lobby");
     }
 }

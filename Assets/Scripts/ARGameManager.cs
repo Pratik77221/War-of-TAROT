@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -26,6 +25,51 @@ public class ARGameManager : MonoBehaviourPunCallbacks
 
 
     public static event Action<GameObject> OnCharacterTapped;
+
+    void Start()
+    {
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowPersistentMessage("Tap on a flat surface to place the game environment. \n Both players need to scan the same area.");
+        }
+        
+    //     // Check for AR component availability
+    //     if (raycastManager == null || anchorManager == null)
+    //     {
+    //         if (TutorialManager.Instance != null)
+    //         {
+    //             TutorialManager.Instance.ShowPersistentMessage("Error: AR components not available. Please restart the app or check device compatibility.");
+    //         }
+    //         Debug.LogError("AR components missing: " + (raycastManager == null ? "ARRaycastManager " : "") + (anchorManager == null ? "ARAnchorManager" : ""));
+    //         return;
+    //     }
+        
+    //     // Check if ARCore Extensions are available on device
+    //     CheckARCoreAvailability();
+    // }
+    
+    // private void CheckARCoreAvailability()
+    // {
+    //     // This method checks if the device supports ARCore Cloud Anchors
+    //     try
+    //     {
+    //         if (!ARCoreExtensions.IsARCoreExtensionsEnabled())
+    //         {
+    //             if (TutorialManager.Instance != null)
+    //             {
+    //                 TutorialManager.Instance.ShowPersistentMessage("Warning: ARCore Extensions not available. Multiplayer functionality may be limited.");
+    //             }
+    //         }
+    //     }
+    //     catch (System.Exception ex)
+    //     {
+    //         Debug.LogError("Error checking ARCore availability: " + ex.Message);
+    //         if (TutorialManager.Instance != null)
+    //         {
+    //             TutorialManager.Instance.ShowPersistentMessage("Error initializing AR. Please ensure ARCore is installed and up to date.");
+    //         }
+    //     }
+    }
 
     void Update()
     {
@@ -58,6 +102,13 @@ public class ARGameManager : MonoBehaviourPunCallbacks
         {
             Pose hitPose = hits[0].pose;
             HostAnchor(hitPose);
+        }
+        else
+        {
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("No surface detected. \n Please aim at a flat surface and try again.", 2f);
+            }
         }
     }
 
@@ -197,6 +248,11 @@ public class ARGameManager : MonoBehaviourPunCallbacks
             SpawnPlayerCharacters(GameManager.Instance.player1Cards, 0, 0);
             SpawnPlayerCharacters(GameManager.Instance.player2Cards, 5, 1);
         }
+        
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowTemporaryMessage("Characters spawned! \n Tap on your character to control it.", 3f);
+        }
     }
 
 
@@ -215,6 +271,16 @@ public class ARGameManager : MonoBehaviourPunCallbacks
         Player targetPlayer = playerIndex == 0 ?
             PhotonNetwork.LocalPlayer :
             PhotonNetwork.PlayerListOthers[0];
+            
+        if (characterPrefabNames.Count == 0)
+        {
+            Debug.LogError("No character prefabs found for player " + (playerIndex + 1));
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowTemporaryMessage("<color=red>Error: No characters found for Player " + (playerIndex + 1) + ". \n Please restart the game.</color>", 3f);
+            }
+            return;
+        }
 
         for (int i = 0; i < 5; i++)
         {
@@ -280,6 +346,18 @@ public class ARGameManager : MonoBehaviourPunCallbacks
                     {
                         Debug.Log($"{PhotonNetwork.NickName} tapped: {hit.collider.gameObject.name}");
                         OnCharacterTapped?.Invoke(hit.collider.gameObject);
+                        
+                        if (TutorialManager.Instance != null)
+                        {
+                            TutorialManager.Instance.ShowTemporaryMessage($"{hit.collider.gameObject.name} activated! \n It will attack the nearest enemy.", 1.5f);
+                        }
+                    }
+                    else
+                    {
+                        if (TutorialManager.Instance != null)
+                        {
+                            TutorialManager.Instance.ShowTemporaryMessage("You can only control your own characters!", 1.5f);
+                        }
                     }
                 }
                 else
