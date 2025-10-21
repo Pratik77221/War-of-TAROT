@@ -277,9 +277,6 @@ For issues, questions, or suggestions:
 - Open an issue on [GitHub Issues](https://github.com/Pratik77221/COD-AR/issues)
 - Contact the repository owner
 
-## 🎬 Screenshots
-
-*(Add screenshots of your game in action here)*
 
 ---
 
