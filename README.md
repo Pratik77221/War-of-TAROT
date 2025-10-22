@@ -1,4 +1,4 @@
-# COD-AR: War of TAROT
+# War of TAROT
 
 ![Unity](https://img.shields.io/badge/Unity-2022.3+-black?logo=unity)
 ![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-blue)
@@ -9,7 +9,7 @@
 
 ## 🎮 Overview
 
-COD-AR (Clash of Dimensions - Augmented Reality) transforms traditional card gaming into an exciting AR experience. Using your mobile device's camera, scan physical tarot cards from your deck to spawn corresponding 3D characters in the augmented reality space. Once your warriors are summoned, battle against your opponent in a shared AR battlefield where strategy, timing, and skill determine the victor.
+War of TAROT transforms traditional card gaming into an exciting AR experience. Using your mobile device's camera, scan physical tarot cards from your deck to spawn corresponding 3D characters in the augmented reality space. Once your warriors are summoned, battle against your opponent in a shared AR battlefield where strategy, timing, and skill determine the victor.
 
 ## ✨ Key Features
 
@@ -84,8 +84,8 @@ COD-AR (Clash of Dimensions - Augmented Reality) transforms traditional card gam
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Pratik77221/COD-AR.git
-cd COD-AR
+git clone https://github.com/Pratik77221/War-of-TAROT.git
+cd War-of-TAROT
 ```
 
 ### 2. Download LFS Files
@@ -103,7 +103,7 @@ git lfs pull     # Download the actual .tif files
 
 1. Open **Unity Hub**
 2. Click **Open** or **Add**
-3. Navigate to the cloned `COD-AR` folder
+3. Navigate to the cloned `War-of-TAROT` folder
 4. Select the folder and open the project
 5. Unity will import all assets (this may take several minutes)
 
@@ -156,7 +156,7 @@ The game supports various tarot card characters. Check the card mapping in the C
 ## 📁 Project Structure
 
 ```
-COD-AR/
+War-of-TAROT/
 ├── Assets/
 │   ├── Scripts/               # All C# game scripts
 │   │   ├── ARGameManager.cs      # Main AR game loop
@@ -274,7 +274,7 @@ This project is available for educational and non-commercial purposes. Please co
 ## 📞 Support
 
 For issues, questions, or suggestions:
-- Open an issue on [GitHub Issues](https://github.com/Pratik77221/COD-AR/issues)
+- Open an issue on [GitHub Issues](https://github.com/Pratik77221/War-of-TAROT/issues)
 - Contact the repository owner
 
 
